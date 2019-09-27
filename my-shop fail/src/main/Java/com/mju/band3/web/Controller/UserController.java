@@ -12,6 +12,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,6 @@ public class UserController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(HttpServletRequest request){
-        System.out.println("redirect to login");
         String userInfo = CookieUtils.getCookieValue(request, COOKIE_NAME_USER_INFO);
         User user = (User) request.getSession().getAttribute("user");
         if (!StringUtils.isEmpty(userInfo)) {
@@ -50,7 +50,7 @@ public class UserController {
         if (!isRe){
             CookieUtils.deleteCookie(request,response,COOKIE_NAME_USER_INFO);
         }
-        System.out.println(isRe);
+
         if (StringUtils.isEmpty(email)){
             request.setAttribute("message","邮箱不能为空");
 //                request.getRequestDispatcher("/login.jsp").forward(request,response);
@@ -113,10 +113,66 @@ public class UserController {
             return "redirect:user_list";
         }else{
             model.addAttribute("baseResult",baseResult);
+            model.addAttribute("ReUser",user);
             return "user_from";
         }
 
 
     }
+    @RequestMapping(value = "/user_search",method = RequestMethod.POST)
+    public String search(Model model,String username){
+        List<User> users = userService.search(username);
+        model.addAttribute("users",users);
+        return "user_list";
+
+    }
+
+    @RequestMapping(value = "/to_edit",method = RequestMethod.GET)
+    public String to_edit(Model model,Integer id){
+                    User byId = userService.findById(id);
+                    model.addAttribute("editUser",byId);
+                    return "user_edit";
+
+    }
+
+
+    @RequestMapping(value = "/user_edit",method = RequestMethod.POST)
+    public String user_edit(User user,RedirectAttributes redirectAttributes,Model model){
+        BaseResult baseResult = userService.save(user);
+        if (baseResult.getStatus()==baseResult.STATUS_SUCCESS){
+            redirectAttributes.addFlashAttribute("baseResult",baseResult);
+            return "redirect:user_list";
+        }else{
+            model.addAttribute("baseResult",baseResult);
+            model.addAttribute("ReUser",user);
+            return "user_from";
+        }
+
+
+    }
+    @ResponseBody
+    @RequestMapping(value = "/user_delete",method = RequestMethod.POST)
+    public BaseResult user_delete(String ids){
+        Integer id=Integer.parseInt(ids);
+        userService.deleteById(id);
+        return BaseResult.success("删除成功");
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/users_delete",method = RequestMethod.POST)
+    public BaseResult delete(String ids) {
+        BaseResult baseResult = null;
+        if (!StringUtils.isEmpty(ids)) {
+            String[] split = ids.split(",");
+            userService.deleteUsers(split);
+            baseResult = BaseResult.success("删除成功");
+            return baseResult;
+        } else {
+            baseResult = BaseResult.fail("删除失败");
+            return baseResult;
+        }
+    }
+
 
 }

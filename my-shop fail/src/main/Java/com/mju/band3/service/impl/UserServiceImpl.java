@@ -30,8 +30,13 @@ public class UserServiceImpl implements UserService {
         BaseResult baseResult = checkUser(user);
         if (baseResult.getStatus()==BaseResult.STATUS_SUCCESS){
             if (user.getId()==null){
+                User byId = userDao.findByEmial(user.getEmail());
+                if (byId!=null&&user.getEmail().equals(byId.getEmail())){
+                    return BaseResult.fail("邮箱已经存在");
+                }
                 userDao.insertUser(user);
             }
+
             if (user.getId()!=null){
                 userDao.updateUser(user);
             }
@@ -41,6 +46,27 @@ public class UserServiceImpl implements UserService {
         return baseResult;
 
 
+    }
+
+    @Override
+    public List<User> search(String username) {
+        return userDao.search(username);
+    }
+
+    @Override
+    public User findById(Integer id) {
+        return userDao.findById(id);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        userDao.deleteById(id);
+
+    }
+
+    @Override
+    public void deleteUsers(String[] ids) {
+        userDao.deleteUsers(ids);
     }
 
 
@@ -59,6 +85,7 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isEmpty(user.getEmail())){
             baseResult = BaseResult.fail("邮箱不能为空，请重新输入");
         }
+
         return baseResult;
 
 

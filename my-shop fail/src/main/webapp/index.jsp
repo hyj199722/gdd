@@ -6,6 +6,6 @@
   <meta http-equiv="Refresh" content="0;url=/login"/>
 </head>
 <body>
-123
+
 </body>
 </html>

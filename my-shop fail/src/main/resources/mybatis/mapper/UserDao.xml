@@ -20,5 +20,39 @@
         update user set email=#{email},username=#{username},password=#{password} where id=#{id}
     </update>
 
+    <select id="search" resultType="user">
+        select * from user
+        <where>
+            <if test="_parameter!=null and _parameter!=''">
+                 username like concat('%',#{username},'%')
+            </if>
+
+        </where>
+    </select>
+
+    <select id="findById" resultType="user">
+        select * from user
+        <where>
+            <if test="_parameter!=null and _parameter!=''">
+                id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <select id="findByEmial" resultType="user">
+        select * from user where email=#{email}
+    </select>
+
+
+    <delete id="deleteById">
+        delete from user where id=#{id}
+    </delete>
+
+    <delete id="deleteUsers">
+        delete from user where id in
+        <foreach collection="array" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>    

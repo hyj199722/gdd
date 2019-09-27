@@ -10,4 +10,13 @@ public interface UserService {
     List<User> selectAll();
 
     BaseResult save(User user);
+
+    List<User> search(String username);
+
+    User findById(Integer id);
+
+
+    void deleteById(Integer id);
+
+    void deleteUsers(String[] split);
 }

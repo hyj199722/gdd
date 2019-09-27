@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 
 <!DOCTYPE html>
 <html>
@@ -48,26 +48,29 @@
 
                             <div class="row" style="padding-left: 12px; padding-top: 10px">
                                 <a href="/user_from" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>新增</a>&nbsp&nbsp&nbsp
-                                <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
-                                <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-download"></i>导入</a>&nbsp&nbsp&nbsp
-                                <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-upload"></i>导出</a>
+                                <%--<a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp--%>
+                                <button type="button" class="btn btn-sm btn-default" onclick="App.deleteMulti('/users_delete')"><i class="fa fa-trash-o"></i> 删除</button>&nbsp;&nbsp;&nbsp;
                             </div>
 
                             <div class="box-tools">
+                                <form action="/user_search" method="post">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="搜索">
+                                    <input type="text" name="username" class="form-control pull-right" placeholder="用户名搜索">
 
                                     <div class="input-group-btn">
                                         <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
+                                </form>
                             </div>
+
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
+                                    <th><input type="checkbox" class="minimal icheck_master"></th>
                                     <th>用户名</th>
                                     <th>邮箱</th>
                                     <th>密码</th>
@@ -77,13 +80,14 @@
                                 <tbody>
                                 <c:forEach items="${users}" var="users">
                                     <tr>
+                                        <td><input id="${users.id}" type="checkbox" class="minimal"></td>
                                         <td>${users.username}</td>
                                         <td>${users.email}</td>
                                         <td>${users.password}</td>
                                         <td>
-                                            <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-search"></i>查看</a>&nbsp&nbsp&nbsp
-                                            <a href="#" type="button" class="btn bnt-sm btn-primary"><i class="fa fa-edit"></i>编辑</a>&nbsp&nbsp&nbsp
-                                            <a href="#" type="button" class="btn bnt-sm btn-danger"><i class="fa fa-trash"></i>删除</a>
+                                            <a href="/to_edit?id=${users.id}" type="button" class="btn bnt-sm btn-primary"><i class="fa fa-edit"></i>编辑</a>&nbsp&nbsp&nbsp
+                                            <%--<a href="/user_delete?id=${users.id}" type="button" class="btn bnt-sm btn-danger"><i class="fa fa-trash"></i>删除</a>--%>
+                                            <button  onclick="App.deleteSingle('/user_delete',${users.id},'确认删除用户:'+${users.username})" type="button" class="btn bnt-sm btn-danger"><i class="fa fa-trash"></i>删除</button>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -103,10 +107,9 @@
         </section>
     </div>
     <jsp:include page="../includes/copyright.jsp"></jsp:include>
-
 </div>
-
-
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<!-- 自定义模态框 -->
+<sys:modal />
 </body>
 </html>

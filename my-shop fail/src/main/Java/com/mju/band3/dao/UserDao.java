@@ -16,4 +16,14 @@ public interface UserDao {
     void insertUser(User user);
 
     void updateUser(User user);
+
+    List<User> search(String username);
+
+    User findById(Integer id);
+
+    User findByEmial(String email);
+
+    void deleteById(Integer id);
+
+    void deleteUsers(String[] ids);
 }
