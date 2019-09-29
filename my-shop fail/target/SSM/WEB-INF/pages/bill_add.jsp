@@ -79,8 +79,14 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 领票时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入日期">
+
+                                    <div  class="col-sm-2 input-group date">
+                                        <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input style="height:26px ;margin-bottom: 8px" type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
                                     <label class="col-sm-2 control-label"> 分发人：</label>
                                     <select name="cars" class="col-sm-2 select">
                                         <option selected>请选择选择</option>

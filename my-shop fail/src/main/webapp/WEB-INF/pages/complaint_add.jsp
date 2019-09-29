@@ -65,16 +65,20 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 投诉时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入日期">
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
                                     <label class="col-sm-2 control-label"> 投诉人：</label>
                                     <input type="text" class="col-sm-2"
                                            placeholder="请输入名称">
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="button" class="btn btn-default" onclick="history.go(-1)">返回上一级
-                                    </button>
+                                    <button type="button" class="btn btn-default" onclick="window.location.href=document.referrer">返回上一级</button>
                                     <button type="submit" class="btn btn-info pull-right">提交</button>
 
                                 </div>

@@ -65,8 +65,13 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 投诉时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入日期">
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
                                     <label class="col-sm-2 control-label"> 投诉人：</label>
                                     <input type="text" class="col-sm-2"
                                            placeholder="请输入名称">
@@ -86,8 +91,13 @@
                                     </select>
 
                                     <label class="col-sm-2 control-label"> 处理时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入日期">
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
 
                                 </div>
 
@@ -107,8 +117,13 @@
                                     </select>
 
                                     <label class="col-sm-2 control-label"> 回告时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入日期">
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
 
                                 </div>
 
@@ -120,7 +135,7 @@
                             <div class="row" style="padding-left: 600px; padding-top: 10px">
 
                                 <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
-                                <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>返回</a>&nbsp&nbsp&nbsp
+                                <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
                             </div>
 
                         </div>

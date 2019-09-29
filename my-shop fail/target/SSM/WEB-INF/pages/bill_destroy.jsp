@@ -57,8 +57,7 @@
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="button" class="btn btn-default" onclick="history.go(-1)">返回上一级
-                                    </button>
+                                    <button type="button" class="btn btn-default" onclick="window.location.href=document.referrer">返回上一级</button>
                                     <button type="submit" class="btn btn-info pull-right">销毁</button>
                                 </div>
 

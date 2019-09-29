@@ -88,8 +88,13 @@
                                         <option value="小李">小李</option>
                                     </select>
                                     <label class="col-sm-2 control-label"> 起运时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入时间">
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
 
                                 </div>
                                 <div class="form-group">
@@ -100,8 +105,13 @@
                                         <option value="小李">小李</option>
                                     </select>
                                     <label class="col-sm-2 control-label"> 到达时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入时间">
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepickerss">
+                                    </div>
+
 
                                 </div>
 
@@ -173,7 +183,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">预付费用：</label>
                                     <input type="text" class="col-sm-2" placeholder="请输入金额">
-                                    <label class="col-sm-2 control-label">鉴定时间：</label><input type="text" class="col-sm-2" placeholder="请输入金额">
+                                    <label class="col-sm-2 control-label">鉴定时间：</label> <div  class="col-sm-2 input-group date">
+                                    <div  class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input  type="text" class="form-control pull-right" id="datepickers">
+                                </div>
+
                                 </div>
 
 
@@ -185,8 +201,7 @@
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="button" class="btn btn-default" onclick="history.go(-1)">返回上一级
-                                    </button>
+                                    <button type="button" class="btn btn-default" onclick="window.location.href=document.referrer">返回上一级</button>
                                     <button type="submit" class="btn btn-info pull-right">提交</button>
 
                                 </div>

@@ -87,7 +87,7 @@
                                         <td>
                                             <a href="/to_edit?id=${users.id}" type="button" class="btn bnt-sm btn-primary"><i class="fa fa-edit"></i>编辑</a>&nbsp&nbsp&nbsp
                                             <%--<a href="/user_delete?id=${users.id}" type="button" class="btn bnt-sm btn-danger"><i class="fa fa-trash"></i>删除</a>--%>
-                                            <button  onclick="App.deleteSingle('/user_delete',${users.id},'确认删除用户:'+${users.username})" type="button" class="btn bnt-sm btn-danger"><i class="fa fa-trash"></i>删除</button>
+                                            <button  onclick="App.deleteSingle('/users_delete',${users.id},'确认删除用户:'+${users.username})" type="button" class="btn bnt-sm btn-danger"><i class="fa fa-trash"></i>删除</button>
                                         </td>
                                     </tr>
                                 </c:forEach>
