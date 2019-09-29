@@ -38,8 +38,9 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/bill_add"><i class="fa fa-circle-o"></i> 票据分发</a></li>
                     <li><a href="/bill_select"><i class="fa fa-circle-o"></i> 票据查询</a></li>
+                    <li><a href="/bill_add"><i class="fa fa-circle-o"></i> 票据分发</a></li>
+
                     <li><a href="/bill_state"><i class="fa fa-circle-o"></i> 票据销核</a></li>
                 </ul>
             </li>
@@ -51,8 +52,9 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/waybill_add"><i class="fa fa-circle-o"></i> 货运单填写</a></li>
                     <li><a href="/waybill_select"><i class="fa fa-circle-o"></i> 货运单查询</a></li>
+                    <li><a href="/waybill_add"><i class="fa fa-circle-o"></i> 货运单填写</a></li>
+
                 </ul>
             </li>
             <li class="active treeview">
@@ -63,8 +65,9 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/contract_add"><i class="fa fa-circle-o"></i> 运输合同填写</a></li>
                     <li><a href="/contract_select"><i class="fa fa-circle-o"></i> 运输合同查询</a></li>
+                    <li><a href="/contract_add"><i class="fa fa-circle-o"></i> 运输合同填写</a></li>
+
                 </ul>
             </li>
             <li class="active treeview">

@@ -106,7 +106,7 @@
                                         <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>添加</a>&nbsp&nbsp&nbsp
                                         <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
                                         <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>返回</a>&nbsp&nbsp&nbsp
+                                        <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
                                     </div>
                                 </div>
                             </form>

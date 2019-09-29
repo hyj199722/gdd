@@ -66,7 +66,13 @@
                                         <label class="col-sm-2 control-label">收货客户：</label>
                                         <input type="text" class="col-sm-2" placeholder="请输入客户">
                                         <label class="col-sm-2 control-label">托运时间：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入时间">
+                                        <div  class="col-sm-2 input-group date">
+                                            <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input style="height:26px ;margin-bottom: 8px" type="text" class="form-control pull-right" id="datepicker">
+                                        </div>
+
                                     </div>
 
                                     <div class="form-group">

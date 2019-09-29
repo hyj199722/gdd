@@ -23,12 +23,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                货运单填写
+                货运单编辑
                 <small> Fill out a WayBill </small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li>货运单填写</li>
+                <li>货运单编辑</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -55,7 +55,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">货运单编号：</label>
                                     <input type="text" class="col-sm-2" placeholder="请输入编号">
-                                    <label class="col-sm-2 control-label">托运日期：</label><input type="text" class="col-sm-2" placeholder="请输入日期">
+                                    <label class="col-sm-2 control-label">托运日期：</label> <div  class="col-sm-2 input-group date">
+                                    <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input style="height:26px ;margin-bottom: 8px" type="text" class="form-control pull-right" id="datepicker">
+                                </div>
+
                                 </div>
 
                                 <div class="form-group">
@@ -160,7 +166,7 @@
                                         <a href="/item_add" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>编辑货物</a>&nbsp&nbsp&nbsp
                                     <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
                                     <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
-                                    <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>返回</a>&nbsp&nbsp&nbsp
+                                        <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
                                     </div>
                                 </div>
 

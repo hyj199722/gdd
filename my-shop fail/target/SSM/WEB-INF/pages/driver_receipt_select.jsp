@@ -65,11 +65,12 @@
                                         <label class="col-sm-2 control-label">时间范围:</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-clock-o"></i>
+                                                <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="reservationtime">
+                                            <input type="text" class="form-control pull-right" id="reservation">
                                         </div>
                                     </div>
+
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-info pull-right">查询</button>

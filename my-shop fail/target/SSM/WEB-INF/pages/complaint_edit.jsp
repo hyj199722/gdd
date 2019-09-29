@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">投诉事件详情：</label><input type="text" class="col-sm-2" placeholder="请输入名称">
+                                    <label class="col-sm-2 control-label">投诉事件详情：</label><input type="text" class="col-sm-2" placeholder="请输入详情"">
 
                                 </div>
 
@@ -65,26 +65,80 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 投诉时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入日期">
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
                                     <label class="col-sm-2 control-label"> 投诉人：</label>
                                     <input type="text" class="col-sm-2"
                                            placeholder="请输入名称">
                                 </div>
 
-                                <div class="box-footer">
+                            </div>
 
-                                    <div class="row" style="padding-left: 600px; padding-top: 10px">
+                            <div class="box-body col-sm-12">
+                                <h2>处理情况</h2>
+                                <div class="form-group">
 
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>返回</a>&nbsp&nbsp&nbsp
+                                    <label class="col-sm-2 control-label"> 是否处理：</label>
+                                    <select name="cars" class="col-sm-2 select">
+                                        <option selected>请选择选择</option>
+                                        <option value="小王">小王</option>
+                                        <option value="小李">小李</option>
+                                    </select>
+
+                                    <label class="col-sm-2 control-label"> 处理时间：</label>
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
                                     </div>
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">处理结果：</label><input type="text" class="col-sm-2" placeholder="请输入详情">
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 control-label"> 是否回告：</label>
+                                    <select name="cars" class="col-sm-2 select">
+                                        <option selected>请选择选择</option>
+                                        <option value="小王">小王</option>
+                                        <option value="小李">小李</option>
+                                    </select>
+
+                                    <label class="col-sm-2 control-label"> 回告时间：</label>
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
 
                                 </div>
 
                             </div>
                         </form>
+
+                        <div class="box-footer">
+
+                            <div class="row" style="padding-left: 600px; padding-top: 10px">
+
+                                <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
+                                <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>

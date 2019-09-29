@@ -55,7 +55,14 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">货运单编号：</label>
                                     <input type="text" class="col-sm-2" placeholder="请输入编号">
-                                    <label class="col-sm-2 control-label">托运日期：</label><input type="text" class="col-sm-2" placeholder="请输入日期">
+                                    <label class="col-sm-2 control-label">托运日期：</label>
+                                    <div  class="col-sm-2 input-group date">
+                                        <div  class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
                                 </div>
 
                                 <div class="form-group">
@@ -158,7 +165,7 @@
 
                                     </button>
 
-                                    <button type="button" class="btn btn-default pull-right" onclick="history.go(-1)">返回上一级
+                                    <button type="button" class="btn btn-default" onclick="window.location.href=document.referrer">返回上一级</button>
                                     <button type="submit"  class="btn btn-info ">提交</button>&nbsp&nbsp&nbsp
 
                                 </div>

@@ -23,12 +23,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                票据分发
+                票据编辑
                 <small>Bill Distribution</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li>票据分发</li>
+                <li>票据编辑</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -79,8 +79,13 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 领票时间：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入日期">
+                                    <div  class="col-sm-2 input-group date">
+                                        <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input style="height:26px ;margin-bottom: 8px" type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+
                                     <label class="col-sm-2 control-label"> 分发人：</label>
                                     <select name="cars" class="col-sm-2 select">
                                         <option selected>请选择选择</option>
@@ -98,7 +103,7 @@
 
                                         <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
                                         <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>返回</a>&nbsp&nbsp&nbsp
+                                        <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
                                     </div>
 
                                 </div>
