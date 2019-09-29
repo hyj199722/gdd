@@ -1,6 +1,8 @@
 package com.mju.band3.web.Controller;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mju.band3.entity.User;
 import com.mju.band3.service.UserService;
 import com.mju.band3.utils.BaseResult;
@@ -90,12 +92,16 @@ public class UserController {
 
     }
     @RequestMapping(value = "/user_list",method = RequestMethod.GET)
-    public String user_LIST(Model model){
+    public String user_LIST(@RequestParam(required = false,defaultValue = "1",value = "pn")Integer pn,Model model){
+        PageHelper.startPage(pn,5);
         List<User> users = userService.selectAll();
-        model.addAttribute("users",users);
+        PageInfo pageInfo=new PageInfo(users,5);
+        model.addAttribute("pageInfo",pageInfo);
         return "user_list";
 
     }
+
+
 
 
     @RequestMapping(value = "/user_from",method = RequestMethod.GET)

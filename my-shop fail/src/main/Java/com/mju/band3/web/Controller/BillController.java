@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 public class BillController {
-    private static final String COOKIE_NAME_USER_INFO="userInfo";
+
     @Autowired
     private UserService userService;
 

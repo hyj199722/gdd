@@ -73,7 +73,6 @@
                                         <input style="width: 30%" type="text" class="form-control" name="username" id="inputUsername3" <c:if test="${ReUser.username!=null}">value="${ReUser.username}"</c:if> placeholder="Username">
                                     </div>
                                 </div>
-
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">

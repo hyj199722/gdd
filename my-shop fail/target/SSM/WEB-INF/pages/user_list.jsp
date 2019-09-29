@@ -78,7 +78,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${users}" var="users">
+                                <c:forEach items="${pageInfo.list}" var="users">
                                     <tr>
                                         <td><input id="${users.id}" type="checkbox" class="minimal"></td>
                                         <td>${users.username}</td>
@@ -94,9 +94,57 @@
 
                                 </tbody>
 
-
-
                             </table>
+                        </div>    <%--分页信息--%>
+                        <div class="row">
+                            <%--分页文字信息--%>
+                            <div class="col-md-6">
+                                当前${pageInfo.pageNum}页，总${pageInfo.pages}页，总共${pageInfo.total}条记录
+                            </div>
+                            <%--分页条信息--%>
+                            <div class="col-md-6">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li><a href="/user_list?pn=1">首页</a> </li>
+                                        <%--如果有上一页，则可以通过减一操作移动，且有<符号&laquo，否则连点<的符号也没有，也就不能移动上一页--%>
+                                        <c:if test="${pageInfo.hasPreviousPage}">
+                                            <li>
+                                                <a href="/user_list?pn=${pageInfo.pageNum-1}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+
+
+                                        <%--如果是当前页，则显示高亮--%>
+                                        <c:forEach items="${pageInfo.navigatepageNums}" var="page_Num">
+                                            <c:if test="${page_Num==pageInfo.pageNum}">
+                                                <li class="active"><a href="#">${page_Num}</a></li>
+                                            </c:if>
+                                            <c:if test="${page_Num!=pageInfo.pageNum}">
+                                                <li><a href="/user_list?pn=${page_Num}">${page_Num}</a></li>
+                                            </c:if>
+
+                                        </c:forEach>
+                                        <c:if test="${pageInfo.hasNextPage}">
+                                            <li>
+                                                <a href="/user_list?pn=${pageInfo.pageNum+1}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+
+                                        <li><a href="/user_list?pn=${pageInfo.pages}">末页</a> </li>
+                                        <form style="float: left" action="/user_list">
+                                            <input type="text" name="pn" style="height:33px;width: 50px">
+                                            <input type="submit" value="跳转" class="btn btn-primary">
+                                        </form>
+
+
+                                    </ul>
+                                </nav>
+                            </div>
+
                         </div>
                         <!-- /.box-body -->
                     </div>
