@@ -127,8 +127,10 @@ public class UserController {
     }
     @RequestMapping(value = "/user_search",method = RequestMethod.POST)
     public String search(Model model,String username){
+        PageHelper.startPage(1,5);
         List<User> users = userService.search(username);
-        model.addAttribute("users",users);
+        PageInfo pageInfo=new PageInfo(users,5);
+        model.addAttribute("pageInfo",pageInfo);
         return "user_list";
 
     }
@@ -156,13 +158,14 @@ public class UserController {
 
 
     }
-    @ResponseBody
-    @RequestMapping(value = "/user_delete",method = RequestMethod.POST)
-    public BaseResult user_delete(String ids){
-        Integer id=Integer.parseInt(ids);
-        userService.deleteById(id);
-        return BaseResult.success("删除成功");
-    }
+
+//    @ResponseBody
+//    @RequestMapping(value = "/user_delete",method = RequestMethod.POST)
+//    public BaseResult user_delete(String ids){
+//        Integer id=Integer.parseInt(ids);
+//        userService.deleteById(id);
+//        return BaseResult.success("删除成功");
+//    }
 
 
     @ResponseBody
