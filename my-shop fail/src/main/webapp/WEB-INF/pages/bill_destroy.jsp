@@ -49,15 +49,15 @@
                         </div>
 
 
-                        <form class="form-horizontal" action="#" method="post">
+                        <form class="form-horizontal" action="/bill_destroy" method="post">
                             <div class="box-body col-sm-12">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">单据编号：</label><input type="text" class="col-sm-2" placeholder="请输入编号">
+                                    <label class="col-sm-2 control-label">单据编号：</label><input type="text" value="${waybillId}" name="waybillId" class="col-sm-2" placeholder="请输入编号">
 
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="button" class="btn btn-default" onclick="window.location.href=document.referrer">返回上一级</button>
+                                    <a href="/bill_destroy_search" type="button" class="btn btn-default" >返回上一级</a>
                                     <button type="submit" class="btn btn-info pull-right">销毁</button>
                                 </div>
 

@@ -54,3 +54,11 @@
 <!-- App -->
 
 <script src="/assets/app/app.js"></script>
+
+<!-- bootstrap datepicker -->
+<script src="/assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- date-range-picker -->
+<script src="/assets/bower_components/moment/min/moment.min.js"></script>
+<script src="/assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap time picker -->
+<script src="/assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>

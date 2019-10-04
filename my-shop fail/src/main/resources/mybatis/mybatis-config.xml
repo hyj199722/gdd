@@ -10,7 +10,7 @@
 
 
     <typeAliases>
-
+    <package name="com.mju.band3.entity"></package>
 </typeAliases>
     
     

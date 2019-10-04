@@ -1,5 +1,7 @@
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 
 
 <!DOCTYPE html>
@@ -9,6 +11,8 @@
     <title>AdminLTE 2 | Dashboard</title>
     <jsp:include page="../includes/header.jsp"></jsp:include>
     <link rel="stylesheet" href="/assets/bower_components/css/bill_add.css">
+    <%pageContext.setAttribute("localDate",new Date());%>
+
 </head>
 
 
@@ -53,27 +57,28 @@
                             <div class="box-body col-sm-12">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">单据类型：</label>
-                                    <select name="cars" class="col-sm-2 select">
-                                        <option value="货运单">货运单</option>
-                                        <option value="运输合同">运输合同</option>
+                                    <select  name="billType" class="col-sm-2 select">
+                                        <option value="1"<c:if test="${'1' eq bill.billType}">selected</c:if>>货运单</option>
+                                        <option value="2" <c:if test="${'2' eq bill.billType}">selected</c:if>>运输合同</option>
 
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">单据开始号：</label><input type="text" class="col-sm-2" placeholder="请输入编号">
-                                    <label class="col-sm-2 control-label">单据结束号：</label><input type="text" class="col-sm-2" placeholder="请输入编号">
+                                    <label class="col-sm-2 control-label">单据开始号：</label><input readonly name="billBegin" type="text" class="col-sm-2" placeholder="请输入编号">
+                                    <label class="col-sm-2 control-label">单据结束号：</label><input <c:if test="${bill.billEnd!=null}">value="${bill.billEnd}" </c:if> name="billEnd" type="text" class="col-sm-2" placeholder="请输入编号">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 领票人：</label>
-                                    <select name="cars" class="col-sm-2 select">
-                                        <option selected>请选择选择</option>
-                                        <option value="小王">小王</option>
-                                        <option value="小李">小李</option>
+                                    <select name="billTaker" class="col-sm-2 select">
+                                        <option selected>请选择</option>
+                                        <c:forEach items="${staff}" var="staff">
+                                            <option value="${staff.staff}"<c:if test="${staff.staff eq bill.billTaker}">selected</c:if>>${staff.staff}</option>
+                                        </c:forEach>
                                     </select>
                                     <label class="col-sm-2 control-label"> 接货点：</label>
-                                    <input type="text" class=" col-sm-2 "
+                                    <input type="text" <c:if test="${bill.billLocation!=null}">value="${bill.billLocation}" </c:if> name="billLocation" class=" col-sm-2 "
                                            placeholder="请输入地址">
                                 </div>
 
@@ -84,23 +89,22 @@
                                         <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input style="height:26px ;margin-bottom: 8px" type="text" class="form-control pull-right" id="datepicker">
+                                        <input style="height:26px ;margin-bottom: 8px"  type="text" value="<fmt:formatDate value="${localDate}" pattern="yyyy-MM-dd"></fmt:formatDate> " name="billDate" class="form-control pull-right" id="datepicker">
                                     </div>
 
                                     <label class="col-sm-2 control-label"> 分发人：</label>
-                                    <select name="cars" class="col-sm-2 select">
-                                        <option selected>请选择选择</option>
-                                        <option value="小王">小王</option>
-                                        <option value="小李">小李</option>
-                                        <option value="小李">小李</option>
+                                    <select name="billGiver" class="col-sm-2 select">
+                                        <option selected>请选择</option>
+                                        <c:forEach items="${staff}" var="staff">
+                                            <option value="${staff.staff}" <c:if test="${staff.staff eq bill.billGiver}">selected</c:if>>${staff.staff}</option>
+                                        </c:forEach>
 
                                     </select>
                                 </div>
 
 
                                 <div class="box-footer">
-                                    <button type="button" class="btn btn-default" onclick="history.go(-1)">返回上一级
-                                    </button>
+                                    <a href="/bill_list" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-recycle"></i>返回</a>&nbsp&nbsp&nbsp
                                     <button type="submit" class="btn btn-info pull-right">提交</button>
 
                                 </div>
@@ -126,6 +130,37 @@
 
 <jsp:include page="../includes/footer.jsp"></jsp:include>
 
+<script>
+    $(function () {
+        var billType = $("select[name='billType']").val();
+        var billDate=$("input[name='billDate']").val();
+        $.ajax({
+           url:"/sexy_generate",
+           type:"POST",
+            data:"billType="+billType+"&billDate="+billDate,
+            success:function (data) {
+                $("input[name='billBegin']").val(data)
+            }
+        });
 
+        $("select[name='billType']").change(function () {
+            var billType = $("select[name='billType']").val();
+            var billDate=$("input[name='billDate']").val();
+            $.ajax({
+                url:"/sexy_generate",
+                type:"POST",
+                data:"billType="+billType+"&billDate="+billDate,
+                success:function (data) {
+                    $("input[name='billBegin']").val(data)
+                }
+            });
+
+        });
+
+
+
+
+    })
+</script>
 </body>
 </html>

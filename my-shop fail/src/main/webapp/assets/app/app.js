@@ -135,7 +135,9 @@ var App = function () {
                         if (data.status === 200) {
                             // 刷新页面
                             $("#btnModalOk").bind("click", function () {
+
                                 window.location.reload();
+
                             });
                         }
 

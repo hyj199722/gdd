@@ -38,10 +38,9 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/bill_select"><i class="fa fa-circle-o"></i> 票据查询</a></li>
-                    <li><a href="/bill_add"><i class="fa fa-circle-o"></i> 票据分发</a></li>
-
-                    <li><a href="/bill_state"><i class="fa fa-circle-o"></i> 票据销核</a></li>
+                    <li><a href="/bill_list"><i class="fa fa-circle-o"></i> 票据查询</a></li>
+                    <li><a href="/to_bill_add"><i class="fa fa-circle-o"></i> 票据分发</a></li>
+                    <li><a href="/to_bill_state"><i class="fa fa-circle-o"></i> 票据销核</a></li>
                 </ul>
             </li>
             <li class="active treeview">

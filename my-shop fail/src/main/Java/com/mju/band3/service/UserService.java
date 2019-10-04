@@ -1,5 +1,6 @@
 package com.mju.band3.service;
 
+import com.mju.band3.entity.Staff;
 import com.mju.band3.entity.User;
 import com.mju.band3.utils.BaseResult;
 
@@ -19,4 +20,6 @@ public interface UserService {
     void deleteById(Integer id);
 
     void deleteUsers(String[] split);
+
+
 }

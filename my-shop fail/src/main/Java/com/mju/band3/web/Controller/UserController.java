@@ -65,7 +65,7 @@ public class UserController {
         }
 
         User user = userService.login(email, password);
-        System.out.println(user);
+
         if (user==null){
             request.setAttribute("message","用户名或者密码错误");
 //                request.getRequestDispatcher("/login.jsp").forward(request,response);
