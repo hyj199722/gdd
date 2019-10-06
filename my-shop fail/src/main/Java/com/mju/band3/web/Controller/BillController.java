@@ -208,10 +208,16 @@ public class BillController {
         }else{
             for (Bill_Status bill_status : bill_statuses) {
                 if (bill_status.getWaybillId().compareTo(biger)>=1){
+
                     biger=bill_status.getWaybillId();
                 }
             }
-            return biger;
+            String head = biger.substring(0, 5);
+            String body = biger.substring(5, 13);
+            int turnInt = Integer.parseInt(body);
+            int addInt=turnInt+1;
+            String end=head+addInt;
+            return end;
         }
 
 
