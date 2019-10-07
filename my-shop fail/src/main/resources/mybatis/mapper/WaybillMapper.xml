@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.band3.dao.WaybillMapper">
+  <resultMap id="BaseResultMap" type="com.mju.band3.entity.Waybill">
+    <id column="waybill_id" jdbcType="VARCHAR" property="waybillId" />
+    <result column="waybill_date" jdbcType="DATE" property="waybillDate" />
+    <result column="waybill_begin" jdbcType="VARCHAR" property="waybillBegin" />
+    <result column="waybill_end" jdbcType="VARCHAR" property="waybillEnd" />
+    <result column="waybill_recive" jdbcType="VARCHAR" property="waybillRecive" />
+    <result column="waybill_recive_address" jdbcType="VARCHAR" property="waybillReciveAddress" />
+    <result column="waybill_recive_phone" jdbcType="VARCHAR" property="waybillRecivePhone" />
+    <result column="waybill_send" jdbcType="VARCHAR" property="waybillSend" />
+    <result column="waybill_send_address" jdbcType="VARCHAR" property="waybillSendAddress" />
+    <result column="waybill_send_phone" jdbcType="VARCHAR" property="waybillSendPhone" />
+    <result column="waybill_freight" jdbcType="DOUBLE" property="waybillFreight" />
+    <result column="waybill_Insurance" jdbcType="DOUBLE" property="waybillInsurance" />
+    <result column="waybill_pay_type" jdbcType="INTEGER" property="waybillPayType" />
+    <result column="waybill_recive_type" jdbcType="INTEGER" property="waybillReciveType" />
+    <result column="waybill_loan" jdbcType="DOUBLE" property="waybillLoan" />
+    <result column="waybill_commission" jdbcType="DOUBLE" property="waybillCommission" />
+    <result column="waybill_salesman" jdbcType="VARCHAR" property="waybillSalesman" />
+    <result column="waybill_rebate" jdbcType="DOUBLE" property="waybillRebate" />
+    <result column="waybill_fill" jdbcType="VARCHAR" property="waybillFill" />
+    <result column="waybill_fill_date" jdbcType="DATE" property="waybillFillDate" />
+    <result column="waybill_remarks" jdbcType="VARCHAR" property="waybillRemarks" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from waybill
+    where waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mju.band3.entity.Waybill">
+    insert into waybill (waybill_id, waybill_date, waybill_begin, 
+      waybill_end, waybill_recive, waybill_recive_address, 
+      waybill_recive_phone, waybill_send, waybill_send_address, 
+      waybill_send_phone, waybill_freight, waybill_Insurance, 
+      waybill_pay_type, waybill_recive_type, waybill_loan, 
+      waybill_commission, waybill_salesman, waybill_rebate, 
+      waybill_fill, waybill_fill_date, waybill_remarks
+      )
+    values (#{waybillId,jdbcType=VARCHAR}, #{waybillDate,jdbcType=DATE}, #{waybillBegin,jdbcType=VARCHAR}, 
+      #{waybillEnd,jdbcType=VARCHAR}, #{waybillRecive,jdbcType=VARCHAR}, #{waybillReciveAddress,jdbcType=VARCHAR}, 
+      #{waybillRecivePhone,jdbcType=VARCHAR}, #{waybillSend,jdbcType=VARCHAR}, #{waybillSendAddress,jdbcType=VARCHAR}, 
+      #{waybillSendPhone,jdbcType=VARCHAR}, #{waybillFreight,jdbcType=DOUBLE}, #{waybillInsurance,jdbcType=DOUBLE}, 
+      #{waybillPayType,jdbcType=INTEGER}, #{waybillReciveType,jdbcType=INTEGER}, #{waybillLoan,jdbcType=DOUBLE}, 
+      #{waybillCommission,jdbcType=DOUBLE}, #{waybillSalesman,jdbcType=VARCHAR}, #{waybillRebate,jdbcType=DOUBLE}, 
+      #{waybillFill,jdbcType=VARCHAR}, #{waybillFillDate,jdbcType=DATE}, #{waybillRemarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mju.band3.entity.Waybill">
+    update waybill
+    set waybill_date = #{waybillDate,jdbcType=DATE},
+      waybill_begin = #{waybillBegin,jdbcType=VARCHAR},
+      waybill_end = #{waybillEnd,jdbcType=VARCHAR},
+      waybill_recive = #{waybillRecive,jdbcType=VARCHAR},
+      waybill_recive_address = #{waybillReciveAddress,jdbcType=VARCHAR},
+      waybill_recive_phone = #{waybillRecivePhone,jdbcType=VARCHAR},
+      waybill_send = #{waybillSend,jdbcType=VARCHAR},
+      waybill_send_address = #{waybillSendAddress,jdbcType=VARCHAR},
+      waybill_send_phone = #{waybillSendPhone,jdbcType=VARCHAR},
+      waybill_freight = #{waybillFreight,jdbcType=DOUBLE},
+      waybill_Insurance = #{waybillInsurance,jdbcType=DOUBLE},
+      waybill_pay_type = #{waybillPayType,jdbcType=INTEGER},
+      waybill_recive_type = #{waybillReciveType,jdbcType=INTEGER},
+      waybill_loan = #{waybillLoan,jdbcType=DOUBLE},
+      waybill_commission = #{waybillCommission,jdbcType=DOUBLE},
+      waybill_salesman = #{waybillSalesman,jdbcType=VARCHAR},
+      waybill_rebate = #{waybillRebate,jdbcType=DOUBLE},
+      waybill_fill = #{waybillFill,jdbcType=VARCHAR},
+      waybill_fill_date = #{waybillFillDate,jdbcType=DATE},
+      waybill_remarks = #{waybillRemarks,jdbcType=VARCHAR}
+    where waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select waybill_id, waybill_date, waybill_begin, waybill_end, waybill_recive, waybill_recive_address, 
+    waybill_recive_phone, waybill_send, waybill_send_address, waybill_send_phone, waybill_freight, 
+    waybill_Insurance, waybill_pay_type, waybill_recive_type, waybill_loan, waybill_commission, 
+    waybill_salesman, waybill_rebate, waybill_fill, waybill_fill_date, waybill_remarks
+    from waybill
+    where waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select waybill_id, waybill_date, waybill_begin, waybill_end, waybill_recive, waybill_recive_address, 
+    waybill_recive_phone, waybill_send, waybill_send_address, waybill_send_phone, waybill_freight, 
+    waybill_Insurance, waybill_pay_type, waybill_recive_type, waybill_loan, waybill_commission, 
+    waybill_salesman, waybill_rebate, waybill_fill, waybill_fill_date, waybill_remarks
+    from waybill
+  </select>
+</mapper>

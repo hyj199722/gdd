@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.band3.dao.Customer_ReceiptMapper">
+  <resultMap id="BaseResultMap" type="com.mju.band3.entity.Customer_Receipt">
+    <id column="customer_receipt_id" jdbcType="INTEGER" property="customerReceiptId" />
+    <result column="waybill_id" jdbcType="VARCHAR" property="waybillId" />
+    <result column="customer_receipt_name" jdbcType="VARCHAR" property="customerReceiptName" />
+    <result column="customer_receipt_record" jdbcType="VARCHAR" property="customerReceiptRecord" />
+    <result column="customer_receipt_check" jdbcType="VARCHAR" property="customerReceiptCheck" />
+    <result column="customer_receipt_date" jdbcType="DATE" property="customerReceiptDate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer_receipt
+    where customer_receipt_id = #{customerReceiptId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mju.band3.entity.Customer_Receipt">
+    insert into customer_receipt (customer_receipt_id, waybill_id, customer_receipt_name, 
+      customer_receipt_record, customer_receipt_check, 
+      customer_receipt_date)
+    values (#{customerReceiptId,jdbcType=INTEGER}, #{waybillId,jdbcType=VARCHAR}, #{customerReceiptName,jdbcType=VARCHAR}, 
+      #{customerReceiptRecord,jdbcType=VARCHAR}, #{customerReceiptCheck,jdbcType=VARCHAR}, 
+      #{customerReceiptDate,jdbcType=DATE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mju.band3.entity.Customer_Receipt">
+    update customer_receipt
+    set waybill_id = #{waybillId,jdbcType=VARCHAR},
+      customer_receipt_name = #{customerReceiptName,jdbcType=VARCHAR},
+      customer_receipt_record = #{customerReceiptRecord,jdbcType=VARCHAR},
+      customer_receipt_check = #{customerReceiptCheck,jdbcType=VARCHAR},
+      customer_receipt_date = #{customerReceiptDate,jdbcType=DATE}
+    where customer_receipt_id = #{customerReceiptId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select customer_receipt_id, waybill_id, customer_receipt_name, customer_receipt_record, 
+    customer_receipt_check, customer_receipt_date
+    from customer_receipt
+    where customer_receipt_id = #{customerReceiptId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select customer_receipt_id, waybill_id, customer_receipt_name, customer_receipt_record, 
+    customer_receipt_check, customer_receipt_date
+    from customer_receipt
+  </select>
+</mapper>

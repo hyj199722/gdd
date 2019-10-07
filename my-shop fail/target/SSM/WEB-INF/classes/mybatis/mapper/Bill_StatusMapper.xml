@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.band3.dao.Bill_StatusMapper">
+  <resultMap id="BaseResultMap" type="com.mju.band3.entity.Bill_Status">
+    <id column="bill_id" jdbcType="INTEGER" property="billId" />
+    <id column="waybill_id" jdbcType="VARCHAR" property="waybillId" />
+    <result column="bill_status" jdbcType="INTEGER" property="billStatus" />
+    <result column="write_date" jdbcType="DATE" property="writeDate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from bill_status
+    where bill_id = #{billId,jdbcType=INTEGER}
+      and waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.mju.band3.entity.Bill_Status">
+    insert into bill_status (bill_id, waybill_id, bill_status, 
+      write_date)
+    values (#{billId,jdbcType=INTEGER}, #{waybillId,jdbcType=VARCHAR}, #{billStatus,jdbcType=INTEGER}, 
+      #{writeDate,jdbcType=DATE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mju.band3.entity.Bill_Status">
+    update bill_status
+    set bill_status = #{billStatus,jdbcType=INTEGER},
+      write_date = #{writeDate,jdbcType=DATE}
+    where bill_id = #{billId,jdbcType=INTEGER}
+      and waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select bill_id, waybill_id, bill_status, write_date
+    from bill_status
+    where bill_id = #{billId,jdbcType=INTEGER}
+      and waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select bill_id, waybill_id, bill_status, write_date
+    from bill_status
+  </select>
+
+
+  <insert id="BathInsertBill_Status">
+    insert into bill_status (bill_id, waybill_id, bill_status,
+      write_date)
+      values
+      <foreach collection="list"  separator=","  item="bill_status">
+        (#{bill_status.billId},#{bill_status.waybillId},#{bill_status.billStatus},#{bill_status.writeDate})
+      </foreach>
+  </insert>
+
+  <delete id="deleteByPrimaryKeyWithoutWay" >
+    delete from bill_status
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </delete>
+
+  <select id="sexyGenerator" resultMap="BaseResultMap">
+    select waybill_id from bill_status
+    where waybill_id like concat(#{bill},'%')
+  </select>
+
+
+  <select id="bill_destroy_search" resultMap="BaseResultMap">
+    select bill_id, waybill_id, bill_status, write_date from bill_status
+    <where>
+      <if test="waybillId!=null and waybillId!=''">
+        waybill_id like concat('%',#{waybillId},'%')
+      </if>
+      <if test="billType!=null and billType!=''">
+        AND waybill_id like concat(#{billType},'%')
+      </if>
+      <if test="billStatus!=null and billStatus!=''">
+        AND bill_status =#{billStatus}
+      </if>
+      <if test="timeRange1!=null and timeRange2!=null ">
+        AND write_date between #{timeRange1} and #{timeRange2}
+      </if>
+
+    </where>
+  </select>
+
+  <select id="selectSingleWayBillId"  resultType="com.mju.band3.entity.Bill_Status">
+    select  waybill_id,bill_status
+    from bill_status
+    where  waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateSingleStatusDestroy" >
+    update bill_status
+    set bill_status =2
+    where  waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.band3.dao.BillMapper">
+  <resultMap id="BaseResultMap" type="com.mju.band3.entity.Bill">
+    <id column="bill_id" jdbcType="INTEGER" property="billId" />
+    <result column="bill_begin" jdbcType="VARCHAR" property="billBegin" />
+    <result column="bill_end" jdbcType="VARCHAR" property="billEnd" />
+    <result column="bill_type" jdbcType="VARCHAR" property="billType" />
+    <result column="bill_taker" jdbcType="VARCHAR" property="billTaker" />
+    <result column="bill_giver" jdbcType="VARCHAR" property="billGiver" />
+    <result column="bill_date" jdbcType="DATE" property="billDate" />
+    <result column="bill_location" jdbcType="VARCHAR" property="billLocation" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bill
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mju.band3.entity.Bill">
+    insert into bill (bill_id, bill_begin, bill_end, 
+      bill_type, bill_taker, bill_giver, 
+      bill_date, bill_location)
+    values (#{billId,jdbcType=INTEGER}, #{billBegin,jdbcType=VARCHAR}, #{billEnd,jdbcType=VARCHAR}, 
+      #{billType,jdbcType=VARCHAR}, #{billTaker,jdbcType=VARCHAR}, #{billGiver,jdbcType=VARCHAR}, 
+      #{billDate,jdbcType=DATE}, #{billLocation,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mju.band3.entity.Bill">
+    update bill
+    set bill_begin = #{billBegin,jdbcType=VARCHAR},
+      bill_end = #{billEnd,jdbcType=VARCHAR},
+      bill_type = #{billType,jdbcType=VARCHAR},
+      bill_taker = #{billTaker,jdbcType=VARCHAR},
+      bill_giver = #{billGiver,jdbcType=VARCHAR},
+      bill_date = #{billDate,jdbcType=DATE},
+      bill_location = #{billLocation,jdbcType=VARCHAR}
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateBillEdit">
+    update bill set bill_taker=#{billTaker},bill_location=#{billLocation},bill_giver=#{billGiver}
+     where bill_id = #{billId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select bill_id, bill_begin, bill_end, bill_type, bill_taker, bill_giver, bill_date, 
+    bill_location
+    from bill
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select bill_id, bill_begin, bill_end, bill_type, bill_taker, bill_giver, bill_date, 
+    bill_location
+    from bill
+  </select>
+
+
+  <select id="bill_search" resultMap="BaseResultMap">
+    select bill_id, bill_begin, bill_end, bill_type, bill_taker, bill_giver, bill_date,
+    bill_location from bill
+    <where>
+      <if test="billTaker!=null and billTaker!=''">
+        bill_taker like concat('%',#{billTaker},'%')
+      </if>
+      <if test="billType!=null and billType!=''">
+        AND bill_type =#{billType}
+      </if>
+
+    </where>
+  </select>
+
+  <select id="selectBillId" resultType="INTEGER">
+    select bill_id from bill where bill_begin=#{billBegin}
+  </select>
+
+
+</mapper>

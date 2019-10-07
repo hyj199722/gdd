@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.band3.dao.ItemMapper">
+  <resultMap id="BaseResultMap" type="com.mju.band3.entity.Item">
+    <id column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="waybill_id" jdbcType="VARCHAR" property="waybillId" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="item_num" jdbcType="INTEGER" property="itemNum" />
+    <result column="item_weight" jdbcType="DOUBLE" property="itemWeight" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mju.band3.entity.Item">
+    insert into item (item_id, waybill_id, item_name, 
+      item_num, item_weight)
+    values (#{itemId,jdbcType=INTEGER}, #{waybillId,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemNum,jdbcType=INTEGER}, #{itemWeight,jdbcType=DOUBLE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mju.band3.entity.Item">
+    update item
+    set waybill_id = #{waybillId,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      item_num = #{itemNum,jdbcType=INTEGER},
+      item_weight = #{itemWeight,jdbcType=DOUBLE}
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select item_id, waybill_id, item_name, item_num, item_weight
+    from item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select item_id, waybill_id, item_name, item_num, item_weight
+    from item
+  </select>
+</mapper>

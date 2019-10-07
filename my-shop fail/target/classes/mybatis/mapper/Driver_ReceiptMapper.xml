@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.band3.dao.Driver_ReceiptMapper">
+  <resultMap id="BaseResultMap" type="com.mju.band3.entity.Driver_Receipt">
+    <id column="driver_receipt_id" jdbcType="INTEGER" property="driverReceiptId" />
+    <result column="contract_id" jdbcType="VARCHAR" property="contractId" />
+    <result column="driver_receipt_name" jdbcType="VARCHAR" property="driverReceiptName" />
+    <result column="driver_receipt_record" jdbcType="VARCHAR" property="driverReceiptRecord" />
+    <result column="driver_receipt_check" jdbcType="VARCHAR" property="driverReceiptCheck" />
+    <result column="driver_receipt_date" jdbcType="DATE" property="driverReceiptDate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from driver_receipt
+    where driver_receipt_id = #{driverReceiptId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mju.band3.entity.Driver_Receipt">
+    insert into driver_receipt (driver_receipt_id, contract_id, driver_receipt_name, 
+      driver_receipt_record, driver_receipt_check, 
+      driver_receipt_date)
+    values (#{driverReceiptId,jdbcType=INTEGER}, #{contractId,jdbcType=VARCHAR}, #{driverReceiptName,jdbcType=VARCHAR}, 
+      #{driverReceiptRecord,jdbcType=VARCHAR}, #{driverReceiptCheck,jdbcType=VARCHAR}, 
+      #{driverReceiptDate,jdbcType=DATE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.mju.band3.entity.Driver_Receipt">
+    update driver_receipt
+    set contract_id = #{contractId,jdbcType=VARCHAR},
+      driver_receipt_name = #{driverReceiptName,jdbcType=VARCHAR},
+      driver_receipt_record = #{driverReceiptRecord,jdbcType=VARCHAR},
+      driver_receipt_check = #{driverReceiptCheck,jdbcType=VARCHAR},
+      driver_receipt_date = #{driverReceiptDate,jdbcType=DATE}
+    where driver_receipt_id = #{driverReceiptId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select driver_receipt_id, contract_id, driver_receipt_name, driver_receipt_record, 
+    driver_receipt_check, driver_receipt_date
+    from driver_receipt
+    where driver_receipt_id = #{driverReceiptId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select driver_receipt_id, contract_id, driver_receipt_name, driver_receipt_record, 
+    driver_receipt_check, driver_receipt_date
+    from driver_receipt
+  </select>
+</mapper>
