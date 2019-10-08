@@ -7,7 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9da14ff-6a3f-4fe7-b096-eb9c67318c34" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/web/Controller/BillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/web/Controller/BillController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/utils/MBG.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/utils/MBG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/BillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/BillController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/my-shop fail/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,20 +22,20 @@
     <session id="1155635727">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="19" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.7" value="7" />
           <entry key="project.open.time.8" value="4" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="18" />
+          <entry key="project.open.time.9" value="4" />
+          <entry key="project.opened" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="8031" />
+          <entry key="java" value="8185" />
           <entry key="js" value="103" />
           <entry key="jsp" value="3469" />
           <entry key="properties" value="15" />
@@ -43,7 +45,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8031" />
+          <entry key="JAVA" value="8185" />
           <entry key="JSP" value="3469" />
           <entry key="JavaScript" value="103" />
           <entry key="PLAIN_TEXT" value="79" />
@@ -57,7 +59,7 @@
           <entry key="class" value="30" />
           <entry key="css" value="3" />
           <entry key="iml" value="3" />
-          <entry key="java" value="117" />
+          <entry key="java" value="118" />
           <entry key="js" value="7" />
           <entry key="jsp" value="77" />
           <entry key="properties" value="4" />
@@ -70,7 +72,7 @@
           <entry key="CLASS" value="30" />
           <entry key="CSS" value="3" />
           <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="117" />
+          <entry key="JAVA" value="118" />
           <entry key="JSP" value="79" />
           <entry key="JavaScript" value="7" />
           <entry key="Properties" value="4" />
@@ -81,11 +83,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/BillController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="214" column="48" selection-start-line="214" selection-start-column="48" selection-end-line="215" selection-end-column="49" />
+            <state relative-caret-position="111">
+              <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,20 +95,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Staff.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/utils/MBG.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+            <state relative-caret-position="320">
+              <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.0-bin/apache-maven-3.6.0/repository/org/springframework/spring-core/5.0.2.RELEASE/spring-core-5.0.2.RELEASE.jar!/org/springframework/util/StringUtils.class">
+        <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Staff.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            <state relative-caret-position="280">
+              <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -324,7 +326,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -595,14 +599,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1570358811144" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1570498977574" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/my-shop fail/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -998,6 +1000,8 @@
       <workItem from="1570173125520" duration="27272000" />
       <workItem from="1570354879151" duration="1614000" />
       <workItem from="1570432102505" duration="59000" />
+      <workItem from="1570432958822" duration="541000" />
+      <workItem from="1570497233721" duration="1737000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1569149408395</created>
@@ -1052,44 +1056,45 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MBG_fun5 - 2019.10.03 at 18h 10m 39s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 16m 44s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.03 at 18h 10m 47s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 17m 01s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.03 at 18h 10m 53s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 25m 06s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.03 at 19h 45m 56s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 25m 47s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.03 at 19h 46m 04s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 26m 59s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.03 at 19h 47m 55s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 27m 49s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.04 at 21h 10m 56s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 28m 02s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.06 at 18h 38m 36s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 28m 16s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.06 at 18h 38m 46s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 28m 39s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MBG_fun5 - 2019.10.06 at 18h 39m 18s.xml">
+    <history-entry file="MBG_fun5 - 2019.10.08 at 09h 28m 49s.xml">
       <configuration name="MBG.fun5" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157214000" />
+    <option name="totallyTimeSpent" value="159492000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26340482" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27010724" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1099,14 +1104,14 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36595744" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.04964539" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.1106383" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32907802" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.5347518" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.2638298" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32907802" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
@@ -1475,23 +1480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/BillController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="214" column="48" selection-start-line="214" selection-start-column="48" selection-end-line="215" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/utils/MBG.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="77" column="38" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.0-bin/apache-maven-3.6.0/repository/org/springframework/spring-core/5.0.2.RELEASE/spring-core-5.0.2.RELEASE.jar!/org/springframework/util/StringUtils.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1555,6 +1543,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/utils/MBG.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/BillController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

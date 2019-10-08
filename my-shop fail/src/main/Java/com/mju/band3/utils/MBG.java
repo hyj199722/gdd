@@ -71,11 +71,14 @@ public class MBG {
     }
     @Test
     public void fun5()  {
-        String a="c201910020001";
-        String substring = a.substring(5, 13);
-        String b=a.substring(0,5);
+        String a="c201901020001";
+        String substring = a.substring(0, 1);
+        String b=a.substring(1,13);
         System.out.println(b);
         System.out.println(substring);
+        long l = Long.parseLong(b);
+        System.out.println(substring+(l+1));
+
 
 
     }

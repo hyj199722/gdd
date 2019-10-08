@@ -180,11 +180,11 @@ public class BillController {
         int begin=Integer.parseInt(bill.getBillBegin().substring(9,13));
         int end=Integer.parseInt(bill.getBillEnd().substring(9,13));
         int mul=end-begin;
-        String substring = bill.getBillBegin().substring(0, 5);
-        String substring2 = bill.getBillBegin().substring(5, 13);
-        int i1 = Integer.parseInt(substring2);
+        String substring = bill.getBillBegin().substring(0, 1);
+        String substring2 = bill.getBillBegin().substring(1, 13);
+        long l = Long.parseLong(substring2);
         for (int i=0;i<=mul;i++){
-            String s = substring + (i1 + i);
+            String s = substring + (l + i);
             StatusList.add(new Bill_Status(newBillId,s,0,writeDate));
         }
         billService.BathInsertBill_Status(StatusList);
@@ -212,10 +212,10 @@ public class BillController {
                     biger=bill_status.getWaybillId();
                 }
             }
-            String head = biger.substring(0, 5);
-            String body = biger.substring(5, 13);
-            int turnInt = Integer.parseInt(body);
-            int addInt=turnInt+1;
+            String head = biger.substring(0, 1);
+            String body = biger.substring(1, 13);
+            long l = Long.parseLong(body);
+            long addInt=l+1;
             String end=head+addInt;
             return end;
         }
