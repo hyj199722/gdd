@@ -6,99 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9da14ff-6a3f-4fe7-b096-eb9c67318c34" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/band3_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/band3_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/band3_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/band3_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_1_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_0_9_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_0_9_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_5_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_5_0_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_2_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_2_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jstl_jstl_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jstl_jstl_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_12.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_29.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_29.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_dbcp2_2_5_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_dbcp2_2_5_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_6_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_6_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_6_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_6_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_generator_mybatis_generator_core_1_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_generator_mybatis_generator_core_1_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_4_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_4_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_6_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_6_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_6_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_6_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_0_2_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_0_2_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/band3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/band3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/dao/Bill_StatusMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/dao/Bill_StatusMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/dao/ItemMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/dao/ItemMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/dao/WaybillMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/dao/WaybillMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Contract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Waybill.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Waybill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/WaybillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/web/Controller/WaybillController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/resources/dbconfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/resources/dbconfig.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/Bill_StatusMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/Bill_StatusMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/ContractMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/ContractMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/ItemMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/ItemMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/WaybillMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/WaybillMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/item_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/item_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/item_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/item_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/waybill_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/waybill_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/waybill_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/waybill_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/waybill_select.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/waybill_select.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/dao/Bill_StatusMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/dao/Bill_StatusMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/dao/ItemMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/dao/ItemMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/dao/WaybillMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/dao/WaybillMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/entity/Contract.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/entity/Contract.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/entity/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/entity/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/entity/Waybill.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/entity/Waybill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/utils/MBG.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/utils/MBG.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/web/Controller/BillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/web/Controller/BillController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/web/Controller/ItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/web/Controller/ItemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/web/Controller/WaybillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/com/mju/band3/web/Controller/WaybillController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/dbconfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/dbconfig.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/mybatis/mapper/Bill_StatusMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/mybatis/mapper/Bill_StatusMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/mybatis/mapper/ContractMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/mybatis/mapper/ContractMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/mybatis/mapper/ItemMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/mybatis/mapper/ItemMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/mybatis/mapper/WaybillMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/classes/mybatis/mapper/WaybillMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/item_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/item_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/item_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/item_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/waybill_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/waybill_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/waybill_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/waybill_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/waybill_select.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/SSM/WEB-INF/pages/waybill_select.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/dao/Bill_StatusMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/dao/Bill_StatusMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/dao/ItemMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/dao/ItemMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/dao/WaybillMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/dao/WaybillMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/entity/Contract.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/entity/Contract.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/entity/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/entity/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/entity/Waybill.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/entity/Waybill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/utils/MBG.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/utils/MBG.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/web/Controller/BillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/web/Controller/BillController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/web/Controller/ItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/web/Controller/ItemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/web/Controller/WaybillController.class" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/com/mju/band3/web/Controller/WaybillController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/dbconfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/dbconfig.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/mybatis/mapper/Bill_StatusMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/mybatis/mapper/Bill_StatusMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/mybatis/mapper/ContractMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/mybatis/mapper/ContractMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/mybatis/mapper/ItemMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/mybatis/mapper/ItemMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-shop fail/target/classes/mybatis/mapper/WaybillMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/my-shop fail/target/classes/mybatis/mapper/WaybillMapper.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a9da14ff-6a3f-4fe7-b096-eb9c67318c34" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/my-shop fail/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,15 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/ItemMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/resources/mybatis/mapper/WaybillMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -156,11 +55,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/webapp/WEB-INF/pages/bill_search_list.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="191">
               <caret line="135" column="51" selection-start-line="135" selection-start-column="51" selection-end-line="135" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2122">
+              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -338,9 +246,29 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="gdd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gdd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gdd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gdd" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gdd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gdd" type="462c0819:PsiDirectoryNode" />
+              <item name="my-shop fail" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -750,6 +678,7 @@
       <workItem from="1571912294386" duration="590000" />
       <workItem from="1571964666388" duration="5908000" />
       <workItem from="1571970919287" duration="35000" />
+      <workItem from="1571970989918" duration="258000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1569149408395</created>
@@ -800,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570358832045</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="卓震历20191025">
+      <created>1571971108156</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1571971108156</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -836,7 +772,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240449000" />
+    <option name="totallyTimeSpent" value="240707000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -850,7 +786,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24614395" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24935733" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -898,7 +834,8 @@
     <MESSAGE value="鱼泡危机2" />
     <MESSAGE value="票据模块完成" />
     <MESSAGE value="鱼泡生成器BUG修复" />
-    <option name="LAST_COMMIT_MESSAGE" value="鱼泡生成器BUG修复" />
+    <MESSAGE value="卓震历20191025" />
+    <option name="LAST_COMMIT_MESSAGE" value="卓震历20191025" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -929,13 +866,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/resources/dbconfig.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-shop fail/src/main/Java/com/mju/band3/entity/Contract.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -1385,6 +1315,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="135" column="51" selection-start-line="135" selection-start-column="51" selection-end-line="135" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2122">
+          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
         </state>
       </provider>
     </entry>
