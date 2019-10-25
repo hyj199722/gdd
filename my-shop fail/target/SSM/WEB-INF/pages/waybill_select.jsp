@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 
 <!DOCTYPE html>
 <html>
@@ -52,25 +52,25 @@
                             </div>
                             <h2></h2>
                             <h3 class="box-title">查询条件</h3>
-                            <form class="form-horizontal" action="#" method="post">
+                            <form class="form-horizontal" action="/waybill_search" method="post">
                                 <div class="box-body col-sm-12 page">
 
                                     <div class="form-group">
-                                    <label class="col-sm-2 control-label">运单号：</label>
-                                    <input type="text" class="col-sm-2" placeholder="请输入编号">
+                                    <label class="col-sm-2 control-label">货运单号：</label>
+                                    <input type="text" name="waybillId" class="col-sm-2" placeholder="请输入编号">
                                         <label class="col-sm-2 control-label">发货客户：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入客户">
+                                        <input type="text" name="waybillSend" class="col-sm-2" placeholder="请输入客户">
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">收货客户：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入客户">
+                                        <input type="text" name="waybillRecive" class="col-sm-2" placeholder="请输入客户">
                                         <label class="col-sm-2 control-label">托运时间：</label>
-                                        <div  class="col-sm-2 input-group date">
-                                            <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
                                             </div>
-                                            <input style="height:26px ;margin-bottom: 8px" type="text" class="form-control pull-right" id="datepicker">
+                                            <input style="width: 200px" name="timeRange" type="text" class="form-control pull-left" id="reservation">
                                         </div>
 
                                     </div>
@@ -78,27 +78,19 @@
                                     <div class="form-group">
 
                                         <label class="col-sm-2 control-label">起点站：</label>
-                                        <select name="cars" class="col-sm-2 select">
-                                            <option value="货运单">货运单</option>
-                                            <option value="运输合同">运输合同</option>
-                                        </select>
+                                        <input type="text"  name="waybillBegin" class=" col-sm-2 " placeholder="请输入起点站">
                                         <label class="col-sm-2 control-label">终点站：</label>
-                                        <select name="cars" class="col-sm-2 select">
-                                            <option selected>请选择选择</option>
-                                            <option value="小王">小王</option>
-                                            <option value="小李">小李</option>
-                                            <option value="小李">小李</option>
-                                        </select>
-
+                                        <input type="text"  name="waybillEnd" class=" col-sm-2 " placeholder="请输入终点站">
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">状态：</label>
-                                        <select name="cars" class="col-sm-2 select">
-                                            <option selected>请选择选择</option>
-                                            <option value="小王">小王</option>
-                                            <option value="小李">小李</option>
-                                            <option value="小李">小李</option>
+                                        <select name="waybillStatus" class="col-sm-2 select">
+                                            <option selected value="0">请选择</option>
+                                            <option value="1">未发货</option>
+                                            <option value="2">已发货</option>
+                                            <option value="3">已送达</option>
+                                            <option value="4">已提货</option>
                                         </select>
                                         <button type="submit" class="btn btn-info pull-right">查询</button>
                                     </div>
@@ -123,15 +115,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${users}" var="users">
+                                <c:forEach items="${waybills}" var="waybill">
                                     <tr>
-                                        <td> <a href="/waybill_edit" >${users.username}</a></td>
-                                        <td>${users.email}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
+                                        <td> <a href="/waybill_edit?waybillId=${waybill.waybillId}" >${waybill.waybillId}</a></td>
+                                        <td>${waybill.waybillBegin}</td>
+                                        <td>${waybill.waybillEnd}</td>
+                                        <td><fmt:formatDate value="${waybill.waybillDate}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                                        <td>${waybill.waybillRecive}</td>
+                                        <td>${waybill.waybillRecivePhone}</td>
+                                        <td><c:if test="${waybill.waybillStatus==1}">未发货</c:if>
+                                            <c:if test="${waybill.waybillStatus==2}">已发货</c:if>
+                                            <c:if test="${waybill.waybillStatus==3}">已送达</c:if>
+                                            <c:if test="${waybill.waybillStatus==4}">已提货</c:if></td>
                                     </tr>
                                 </c:forEach>
 
@@ -140,16 +135,55 @@
 
                             </table>
                         </div>
-                        <div class="page">
-                            <ul class="pagination ">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
+                        <div class="row" >
+                            <%--分页文字信息--%>
+                            <div class="col-md-6">
+                                当前第${pageInfo.pageNum}页，总${pageInfo.pages}页，总共${pageInfo.total}条记录
+                            </div>
+                            <%--分页条信息--%>
+                            <div class="col-md-6" style="padding-left: 150px">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li><a href="/bill_list?pn=1">首页</a> </li>
+                                        <%--如果有上一页，则可以通过减一操作移动，且有<符号&laquo，否则连点<的符号也没有，也就不能移动上一页--%>
+                                        <c:if test="${pageInfo.hasPreviousPage}">
+                                            <li>
+                                                <a href="/bill_list?pn=${pageInfo.pageNum-1}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+
+
+                                        <%--如果是当前页，则显示高亮--%>
+                                        <c:forEach items="${pageInfo.navigatepageNums}" var="page_Num">
+                                            <c:if test="${page_Num==pageInfo.pageNum}">
+                                                <li class="active"><a href="#">${page_Num}</a></li>
+                                            </c:if>
+                                            <c:if test="${page_Num!=pageInfo.pageNum}">
+                                                <li><a href="/bill_list?pn=${page_Num}">${page_Num}</a></li>
+                                            </c:if>
+
+                                        </c:forEach>
+                                        <c:if test="${pageInfo.hasNextPage}">
+                                            <li>
+                                                <a href="/bill_list?pn=${pageInfo.pageNum+1}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+
+                                        <li><a href="/bill_list?pn=${pageInfo.pages}">末页</a> </li>
+                                        <form style="float: left" action="/bill_list">
+                                            <input type="text" name="pn" style="height:33px;width: 50px">
+                                            <input type="submit" value="跳转" class="btn btn-primary">
+                                        </form>
+
+
+                                    </ul>
+                                </nav>
+                            </div>
+
                         </div>
                         <!-- /.box-body -->
 
@@ -171,5 +205,50 @@
 
 
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<script>
+    $(function () {
+
+
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+            {
+                ranges   : {
+                    'Today'       : [moment(), moment()],
+                    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate  : moment()
+            },
+            function (start, end) {
+                $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+            }
+        )
+
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        })
+
+
+
+
+
+
+
+        //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false
+        })
+    })
+</script>
 </body>
 </html>

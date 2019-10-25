@@ -3,6 +3,7 @@
 <mapper namespace="com.mju.band3.dao.WaybillMapper">
   <resultMap id="BaseResultMap" type="com.mju.band3.entity.Waybill">
     <id column="waybill_id" jdbcType="VARCHAR" property="waybillId" />
+      <result column="waybill_status" jdbcType="DATE" property="waybillStatus" />
     <result column="waybill_date" jdbcType="DATE" property="waybillDate" />
     <result column="waybill_begin" jdbcType="VARCHAR" property="waybillBegin" />
     <result column="waybill_end" jdbcType="VARCHAR" property="waybillEnd" />
@@ -29,7 +30,7 @@
     where waybill_id = #{waybillId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.mju.band3.entity.Waybill">
-    insert into waybill (waybill_id, waybill_date, waybill_begin, 
+    insert into waybill (waybill_id,waybill_status,waybill_date, waybill_begin,
       waybill_end, waybill_recive, waybill_recive_address, 
       waybill_recive_phone, waybill_send, waybill_send_address, 
       waybill_send_phone, waybill_freight, waybill_Insurance, 
@@ -37,7 +38,7 @@
       waybill_commission, waybill_salesman, waybill_rebate, 
       waybill_fill, waybill_fill_date, waybill_remarks
       )
-    values (#{waybillId,jdbcType=VARCHAR}, #{waybillDate,jdbcType=DATE}, #{waybillBegin,jdbcType=VARCHAR}, 
+    values (#{waybillId,jdbcType=VARCHAR}, #{waybillStatus,jdbcType=INTEGER},#{waybillDate,jdbcType=DATE}, #{waybillBegin,jdbcType=VARCHAR},
       #{waybillEnd,jdbcType=VARCHAR}, #{waybillRecive,jdbcType=VARCHAR}, #{waybillReciveAddress,jdbcType=VARCHAR}, 
       #{waybillRecivePhone,jdbcType=VARCHAR}, #{waybillSend,jdbcType=VARCHAR}, #{waybillSendAddress,jdbcType=VARCHAR}, 
       #{waybillSendPhone,jdbcType=VARCHAR}, #{waybillFreight,jdbcType=DOUBLE}, #{waybillInsurance,jdbcType=DOUBLE}, 
@@ -48,7 +49,8 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.mju.band3.entity.Waybill">
     update waybill
-    set waybill_date = #{waybillDate,jdbcType=DATE},
+    set waybill_status = #{waybillStatus,jdbcType=INTEGER},
+      waybill_date = #{waybillDate,jdbcType=DATE},
       waybill_begin = #{waybillBegin,jdbcType=VARCHAR},
       waybill_end = #{waybillEnd,jdbcType=VARCHAR},
       waybill_recive = #{waybillRecive,jdbcType=VARCHAR},
@@ -71,7 +73,7 @@
     where waybill_id = #{waybillId,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select waybill_id, waybill_date, waybill_begin, waybill_end, waybill_recive, waybill_recive_address, 
+    select waybill_id,waybill_status, waybill_date, waybill_begin, waybill_end, waybill_recive, waybill_recive_address,
     waybill_recive_phone, waybill_send, waybill_send_address, waybill_send_phone, waybill_freight, 
     waybill_Insurance, waybill_pay_type, waybill_recive_type, waybill_loan, waybill_commission, 
     waybill_salesman, waybill_rebate, waybill_fill, waybill_fill_date, waybill_remarks
@@ -79,10 +81,46 @@
     where waybill_id = #{waybillId,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select waybill_id, waybill_date, waybill_begin, waybill_end, waybill_recive, waybill_recive_address, 
+    select waybill_id, waybill_status,waybill_date, waybill_begin, waybill_end, waybill_recive, waybill_recive_address,
     waybill_recive_phone, waybill_send, waybill_send_address, waybill_send_phone, waybill_freight, 
     waybill_Insurance, waybill_pay_type, waybill_recive_type, waybill_loan, waybill_commission, 
     waybill_salesman, waybill_rebate, waybill_fill, waybill_fill_date, waybill_remarks
     from waybill
   </select>
+  <select id="selectAllInOrder" resultMap="BaseResultMap">
+    select waybill_id, waybill_status,waybill_date, waybill_begin, waybill_end, waybill_recive, waybill_recive_address,
+    waybill_recive_phone, waybill_send, waybill_send_address, waybill_send_phone, waybill_freight,
+    waybill_Insurance, waybill_pay_type, waybill_recive_type, waybill_loan, waybill_commission,
+    waybill_salesman, waybill_rebate, waybill_fill, waybill_fill_date, waybill_remarks
+    from waybill
+    order by waybill_id desc
+  </select>
+  <select id="waybillSearch" resultMap="BaseResultMap">
+    select * from waybill
+    <where>
+      <if test="waybillId!=null and waybillId!=''">
+        waybill_id like concat('%',#{waybillId},'%')
+      </if>
+      <if test="waybillSend!=null and waybillSend!=''">
+        AND waybill_id like concat(#{waybillSend},'%')
+      </if>
+      <if test="waybillRecive!=null and waybillRecive!=''">
+        AND waybill_recive =#{waybillRecive}
+      </if>
+      <if test="waybillBegin!=null and waybillBegin!=''">
+        AND waybill_begin =#{waybillBegin}
+      </if>
+      <if test="waybillEnd!=null and waybillEnd!=''">
+        AND waybill_end =#{waybillEnd}
+      </if>
+      <if test="timeRange1!=null and timeRange2!=null ">
+        AND waybill_date between #{timeRange1} and #{timeRange2}
+      </if>
+    </where>
+  </select>
+  <update id="changeStatus" parameterType="com.mju.band3.entity.Waybill">
+    update waybill
+    set waybill_status = #{status,jdbcType=INTEGER}
+    where waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </update>
 </mapper>

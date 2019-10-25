@@ -49,63 +49,62 @@
                         <div class="box-header">
 
 
-                            <form class="form-horizontal" action="#" method="post">
+                            <form class="form-horizontal" action="/item_save" method="post">
                                 <div class="box-body col-sm-12 page">
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">货运单编号：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入编号">
+                                        <input type="text" name="waybillId" readonly value="${waybillId}" class="col-sm-2" placeholder="请输入编号">
 
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">货物名称：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入名称">
-                                        <label class="col-sm-2 control-label">编号：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入编号">
+                                        <input type="text" name="itemName" class="col-sm-2" placeholder="请输入名称">
+                                        <label class="col-sm-2 control-label">货物编号：</label>
+                                        <input type="text" name="itemId" class="col-sm-2" placeholder="请输入编号">
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"> 包装：</label>
-                                        <select name="cars" class="col-sm-2 select">
-                                            <option selected>请选择选择</option>
-                                            <option value="小王">小王</option>
-                                            <option value="小李">小李</option>
+                                        <select name="itemWrap" class="col-sm-2 select">
+                                            <option selected value="0">请选择</option>
+                                            <option value="1">纸箱</option>
+                                            <option value="2">袋装</option>
+                                            <option value="3">桶装</option>
+                                            <option value="4">其他</option>
                                         </select>
                                         <label class="col-sm-2 control-label"> 件数：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入件数">
+                                        <input type="text" name="itemNum" class="col-sm-2" placeholder="请输入件数">
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">重量（千克）：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入重量">
+                                        <input type="text" name="itemWeight" class="col-sm-2" placeholder="请输入重量">
                                         <label class="col-sm-2 control-label">体积（立方米）：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入体积">
+                                        <input type="text" name="itemSize" class="col-sm-2" placeholder="请输入体积">
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">货物价值（元）：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入价格">
+                                        <input type="text" name="itemValue" class="col-sm-2" placeholder="请输入价格">
                                         <label class="col-sm-2 control-label">保险费率：</label>
-                                        <input type="text" class="col-sm-2" placeholder="请输入费率">
+                                        <input type="text" name="itemInsurance" class="col-sm-2" placeholder="请输入费率">
                                     </div>
                                     <div class="form-group">
 
                                         <label class="col-sm-2 control-label"> 计价方式：</label>
-                                        <select name="cars" class="col-sm-2 select">
-                                            <option selected>请选择选择</option>
-                                            <option value="小王">小王</option>
-                                            <option value="小李">小李</option>
-                                            <option value="小李">小李</option>
+                                        <select name="itemPay" class="col-sm-2 select">
+                                            <option selected value="0">请选择</option>
+                                            <option value="1">重量</option>
+                                            <option value="2">件数</option>
 
                                         </select>
                                         <label class="col-sm-2 control-label"> 运输费：</label>
-                                        <input type="text" class="col-sm-2"
-                                               placeholder="请输入价钱">
+                                        <input type="text" class="col-sm-2" name="itemShip" placeholder="请输入价钱">
 
                                     </div>
 
                                     <div class="row" style="padding-left: 50px; padding-top: 10px">
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>添加</a>&nbsp&nbsp&nbsp
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
+                                        <button  type="post" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>添加</button>&nbsp&nbsp&nbsp
+                                        <a href="/item_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
                                         <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
                                     </div>
                                 </div>
@@ -128,15 +127,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${users}" var="users">
+                                <c:forEach items="${items}" var="item">
                                     <tr>
-                                        <td> <a href="/item_edit" >${users.username}</a></td>
-                                        <td>${users.email}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
+                                        <td>${item.itemName}</td>
+                                        <td> <a href="/item_edit?itemId=${item.itemId}" >${item.itemId}</a></td>
+                                        <td><c:if test="${item.itemWrap ==1}" >纸箱</c:if>
+                                            <c:if test="${item.itemWrap ==2}" >袋装</c:if>
+                                            <c:if test="${item.itemWrap ==3}" >桶装</c:if>
+                                            <c:if test="${item.itemWrap ==4}" >其他</c:if></td>
+                                        <td>${item.itemNum}</td>
+                                        <td><c:if test="${item.itemWeight!=null}" >${item.itemWeight}</c:if></td>
+                                        <td><c:if test="${item.itemSize!=null}" >${item.itemSize}</c:if></td>
+                                        <td><c:if test="${item.itemValue!=null}" >${item.itemValue}</c:if></td>
                                     </tr>
                                 </c:forEach>
 

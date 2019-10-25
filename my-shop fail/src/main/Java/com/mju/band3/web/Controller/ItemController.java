@@ -1,7 +1,9 @@
 package com.mju.band3.web.Controller;
 
 
+import com.mju.band3.entity.Item;
 import com.mju.band3.entity.User;
+import com.mju.band3.service.ItemService;
 import com.mju.band3.service.UserService;
 import com.mju.band3.utils.BaseResult;
 import com.mju.band3.utils.CookieUtils;
@@ -22,62 +24,78 @@ import java.util.List;
 public class ItemController {
     private static final String COOKIE_NAME_USER_INFO="userInfo";
     @Autowired
-    private UserService userService;
+    private ItemService itemService;
 
 
     //货物单
 
     @RequestMapping(value = "/item_add",method = RequestMethod.GET)
-    public String item_add(Model model){
-        List<User> users = userService.selectAll();
-        model.addAttribute("users",users);
+    public String item_add(Model model,@RequestParam String waybillId){
+        List<Item> items = itemService.getItemByWaybillId(waybillId);
+        model.addAttribute("waybillId",waybillId);
+        model.addAttribute("items",items);
         return "item_add";
 
     }
     @RequestMapping(value = "/item_edit",method = RequestMethod.GET)
-    public String item_edit(Model model){
-        List<User> users = userService.selectAll();
-        model.addAttribute("users",users);
+    public String item_edit(@RequestParam Integer itemId,Model model){
+        Item item=itemService.getItem(itemId);
+        List<Item> items = itemService.getItems();
+        model.addAttribute("items",items);
+        model.addAttribute("item",item);
         return "item_edit";
 
     }
-    @RequestMapping(value = "/item_save",method = RequestMethod.GET)
-    public String item_save(User user, RedirectAttributes redirectAttributes,Model model){
-        BaseResult baseResult = userService.save(user);
-        if (baseResult.getStatus()==baseResult.STATUS_SUCCESS){
-            redirectAttributes.addFlashAttribute("baseResult",baseResult);
-            return "redirect:item_select";
-        }else{
-            model.addAttribute("baseResult",baseResult);
-            return "item_add";
+    @RequestMapping(value = "/item_save",method = RequestMethod.POST)
+    public String item_save(Item item,RedirectAttributes redirectAttributes){
+        if (StringUtils.isEmpty(item.getWaybillId())) {
+            redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货运单编号"));
+            return "redirect:item_add";
         }
+        if (StringUtils.isEmpty(item.getItemName())) {
+            redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货运货物名称"));
+            return "redirect:item_add";
+        }
+        if (StringUtils.isEmpty(item.getItemId())) {
+            redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货物编号"));
+            return "redirect:item_add";
+        }
+        if (StringUtils.isEmpty(item.getItemNum())) {
+            redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货物件数量"));
+            return "redirect:item_add";
+        }
+        itemService.insertItem(item);
+        return "redirect:item_add";
 
     }
     @RequestMapping(value = "/item_select",method = RequestMethod.GET)
     public String item_select(Model model){
-        List<User> users = userService.selectAll();
-        model.addAttribute("users",users);
+
         return "item_select";
+
+    }
+    @RequestMapping(value = "/item_alter",method = RequestMethod.POST)
+    public String item_alter(Item item,Model model){
+        itemService.updateItem(item);
+        model.addAttribute("waybillId",item.getWaybillId());
+        return "redirect:item_add";
 
     }
     @RequestMapping(value = "/itembill_select",method = RequestMethod.GET)
     public String itembill_select(Model model){
-        List<User> users = userService.selectAll();
-        model.addAttribute("users",users);
+
         return "itembill_select";
 
     }
     @RequestMapping(value = "/itemdrive_select",method = RequestMethod.GET)
     public String itemdrive_select(Model model){
-        List<User> users = userService.selectAll();
-        model.addAttribute("users",users);
+
         return "itemdrive_select";
 
     }
     @RequestMapping(value = "/itemdriver_selectd",method = RequestMethod.GET)
     public String itemdriver_selectd(Model model){
-        List<User> users = userService.selectAll();
-        model.addAttribute("users",users);
+
         return "itemdriver_selectd";
 
     }

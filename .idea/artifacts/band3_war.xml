@@ -1,6 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="war" name="band3:war">
     <output-path>$PROJECT_DIR$/my-shop fail/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>band3</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="archive" name="SSM.war">
       <element id="artifact" artifact-name="band3:war exploded" />
     </root>

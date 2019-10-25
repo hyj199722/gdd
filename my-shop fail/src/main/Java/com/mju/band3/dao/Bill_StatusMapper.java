@@ -32,4 +32,11 @@ public interface Bill_StatusMapper {
     Bill_Status selectSingleWayBillId(String wayBillID);
 
     void updateSingleStatusDestroy(String wayBillId);
+
+    //震历添加的方法
+    List<Bill_Status> latestRecord();
+
+    Bill_Status idCanBeUse(String waybillId);
+
+    void changeTheStatus(String waybillId);
 }

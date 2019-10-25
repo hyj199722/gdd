@@ -5,6 +5,8 @@ import java.util.Date;
 public class Contract {
     private String contractId;
 
+    private Integer contractStatus;
+
     private String contractDriver;
 
     private String contractCarnum;
@@ -231,5 +233,13 @@ public class Contract {
 
     public void setContractRemarks(String contractRemarks) {
         this.contractRemarks = contractRemarks == null ? null : contractRemarks.trim();
+    }
+
+    public Integer getContractStatus() {
+        return contractStatus;
+    }
+
+    public void setContractStatus(Integer contractStatus) {
+        this.contractStatus = contractStatus;
     }
 }

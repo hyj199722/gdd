@@ -1,11 +1,16 @@
 package com.mju.band3.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Waybill {
     private String waybillId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date waybillDate;
+
+    private Integer waybillStatus;
 
     private String waybillBegin;
 
@@ -41,6 +46,7 @@ public class Waybill {
 
     private String waybillFill;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date waybillFillDate;
 
     private String waybillRemarks;
@@ -211,5 +217,13 @@ public class Waybill {
 
     public void setWaybillRemarks(String waybillRemarks) {
         this.waybillRemarks = waybillRemarks == null ? null : waybillRemarks.trim();
+    }
+
+    public Integer getWaybillStatus() {
+        return waybillStatus;
+    }
+
+    public void setWaybillStatus(Integer waybillStatus) {
+        this.waybillStatus = waybillStatus;
     }
 }
