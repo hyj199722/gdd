@@ -1,14 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@ page import="java.util.Date" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>客户投诉</title>
     <jsp:include page="../includes/header.jsp"></jsp:include>
     <link rel="stylesheet" href="/assets/bower_components/css/bill_add.css">
+    <%pageContext.setAttribute("localDate",new Date());%>
 </head>
 
 
@@ -49,36 +51,38 @@
                         </div>
 
 
-                        <form class="form-horizontal" action="/complaint_save" method="post">
+                        <form class="form-horizontal" action="/complaint_save" method="POST">
                             <div class="box-body col-sm-12">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">投诉货运单编号：</label>
-                                    </label><input type="text" class="col-sm-2" placeholder="请输入编号">
+                                    </label><input <c:if test="${complaint.waybillId!=null}">value="${complaint.waybillId}" </c:if> type="text"name="waybillId" class="col-sm-2" placeholder="请输入编号">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">投诉事件详情：</label><input type="text" class="col-sm-2" placeholder="请输入名称">
+                                    <label class="col-sm-2 control-label">投诉事件详情：</label>
+                                    <textarea style="width: 50%" class=" form-control" name="complaintDetail" rows="2" placeholder="请输入内容"><c:if test="${complaint.complaintDetail!=null}">${complaint.complaintDetail} </c:if></textarea>
 
                                 </div>
 
 
 
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label"> 投诉人：</label>
+                                    <input type="text" class="col-sm-2"
+                                           <c:if test="${complaint.complaintPerson!=null}">value="${complaint.complaintPerson}" </c:if> name="complaintPerson" placeholder="请输入名称">
                                     <label class="col-sm-2 control-label"> 投诉时间：</label>
                                     <div  class="col-sm-2 input-group date">
                                         <div  class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
+                                            <i  class=" fa fa-calendar"></i>
                                         </div>
-                                        <input  type="text" class="form-control pull-right" id="datepicker">
+                                        <input  type="text" value="<fmt:formatDate value="${localDate}" pattern="yyyy-MM-dd"></fmt:formatDate> " name="complaintDate" class="form-control pull-right" id="datepicker">
                                     </div>
 
-                                    <label class="col-sm-2 control-label"> 投诉人：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入名称">
+
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="button" class="btn btn-default" onclick="window.location.href=document.referrer">返回上一级</button>
+                                    <a href="/complaint_manager" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
                                     <button type="submit" class="btn btn-info pull-right">提交</button>
 
                                 </div>

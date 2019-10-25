@@ -95,7 +95,8 @@
                                 </tbody>
 
                             </table>
-                        </div>    <%--分页信息--%>
+                        </div>
+                        <%--分页信息--%>
                         <div class="row">
                             <%--分页文字信息--%>
                             <div class="col-md-6">

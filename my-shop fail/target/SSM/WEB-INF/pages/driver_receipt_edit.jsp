@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>司机回执编辑</title>
     <jsp:include page="../includes/header.jsp"></jsp:include>
     <link rel="stylesheet" href="/assets/bower_components/css/bill_add.css">
 </head>
@@ -45,48 +46,52 @@
 
                     <div class="box box-info box-size">
                         <div class="box-header with-border">
-                            <h3 class="box-title">司机回执</h3>
+                            <h3 class="box-title">司机回执编辑</h3>
                         </div>
 
 
-                        <form class="form-horizontal" action="/driver_receipt_save" method="post">
+                        <form  id="driver_receipt_max_form" class="form-horizontal" action="/driver_receipt_edit" method="post">
+                            <input name="driverReceiptId" value="${driver_receipt.driverReceiptId}" hidden>
                             <div class="box-body col-sm-12">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">运输合同编号：</label>
-                                    </label><input type="text" class="col-sm-2" placeholder="请输入编号">
+                                    <input  name="contractId" value="${driver_receipt.contractId}" readonly=readonly type="text" class="col-sm-2" placeholder="请输入编号">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">司机名称：</label><input type="text" class="col-sm-2" placeholder="请输入名称">
+                                    <label class="col-sm-2 control-label">司机名称：</label><input name="driverReceiptName" value="${driver_receipt.driverReceiptName}"type="text" class="col-sm-2" placeholder="请输入名称">
 
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 收货验收记录：</label>
-                                    <input type="text"  placeholder="请输入内容">
+                                    <textarea name="driverReceiptRecord" style="width: 50%" class=" form-control"  rows="2" >${driver_receipt.driverReceiptRecord}</textarea>
+
 
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label"> 验收人：</label>
+                                    <input name="driverReceiptCheck"type="text" class="col-sm-2"value="${driver_receipt.driverReceiptCheck}"
+                                           placeholder="请输入名称">
                                     <label class="col-sm-2 control-label"> 验收时间：</label>
                                     <div  class="col-sm-2 input-group date">
-                                        <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
+                                        <div  class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input style="height:26px ;margin-bottom: 8px" type="text" class="form-control pull-right" id="datepicker">
+                                        <input  name="driverReceiptDate" value="<fmt:formatDate value="${driver_receipt.driverReceiptDate}" pattern="yyyy-MM-dd"/>" readonly="readonly" type="text" class="form-control pull-right" id="datepicker">
                                     </div>
-                                    <label class="col-sm-2 control-label"> 验收人：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入名称">
+
                                 </div>
 
                                 <div class="box-footer">
 
-                                    <div class="row" style="padding-left: 600px; padding-top: 10px">
+                                    <div class="row" style="padding-left: 700px; padding-top: 10px">
 
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
-                                        <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
+                                        <button id="driver_receipt_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</button>&nbsp&nbsp&nbsp
+
+                                        <button  type="submit" class="btn bnt-sm btn-default"><i class="fa fa-edit"></i>修改</button>&nbsp&nbsp&nbsp
+                                        <a href="/driver_receipt_select" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
                                     </div>
 
                                 </div>
@@ -111,5 +116,22 @@
 
 
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<!-- 自定义模态框 -->
+<sys:modal />
+<script>
+
+    $("#driver_receipt_delete").bind("click",function () {
+        $("#modal-message").html("确认删除当前回执？");
+        $("#modal-default").modal("show");
+        $("#btnModalOk").bind("click", function () {
+            $("#modal-default").modal("hide");
+            $("#driver_receipt_max_form").attr("action","/driver_receipt_delete?driverReceiptId="+${driver_receipt.driverReceiptId})
+            $("#driver_receipt_max_form").submit();
+
+        });
+    });
+
+
+</script>
 </body>
 </html>

@@ -7,6 +7,11 @@
     <result column="complaint_detail" jdbcType="VARCHAR" property="complaintDetail" />
     <result column="complaint_person" jdbcType="VARCHAR" property="complaintPerson" />
     <result column="complaint_date" jdbcType="DATE" property="complaintDate" />
+    <result column="complanit_do_type" jdbcType="VARCHAR" property="complaintDoType" />
+    <result column="complanit_do_result" jdbcType="VARCHAR" property="complaintDoResult" />
+    <result column="complanit_do_date" jdbcType="DATE" property="complaintDoDate" />
+    <result column="complanit_reply_type" jdbcType="VARCHAR" property="complaintReplyType" />
+    <result column="complanit_reply_date" jdbcType="DATE" property="ComplaintReplyDate" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from complaint
@@ -23,16 +28,66 @@
     set waybill_id = #{waybillId,jdbcType=VARCHAR},
       complaint_detail = #{complaintDetail,jdbcType=VARCHAR},
       complaint_person = #{complaintPerson,jdbcType=VARCHAR},
-      complaint_date = #{complaintDate,jdbcType=DATE}
+      complaint_date = #{complaintDate,jdbcType=DATE},
+      complanit_do_type = #{complaintDoType,jdbcType=VARCHAR},
+      complanit_do_result = #{complaintDoResult,jdbcType=VARCHAR},
+      complanit_do_date = #{complaintDoDate,jdbcType=DATE},
+      complanit_reply_type = #{complaintReplyType,jdbcType=VARCHAR},
+      complanit_reply_date = #{ComplaintReplyDate,jdbcType=DATE}
     where complaint_id = #{complaintId,jdbcType=INTEGER}
   </update>
+
+  <update id="updateComplaintEdit" parameterType="com.mju.band3.entity.Complaint">
+    update complaint
+    set waybill_id = #{waybillId,jdbcType=VARCHAR},
+      complaint_detail = #{complaintDetail,jdbcType=VARCHAR},
+      complaint_person = #{complaintPerson,jdbcType=VARCHAR},
+      complaint_date = #{complaintDate,jdbcType=DATE},
+      complanit_do_type = #{complaintDoType,jdbcType=VARCHAR},
+      complanit_do_result = #{complaintDoResult,jdbcType=VARCHAR},
+      complanit_do_date = #{complaintDoDate,jdbcType=DATE},
+      complanit_reply_type = #{complaintReplyType,jdbcType=VARCHAR},
+      complanit_reply_date = #{ComplaintReplyDate,jdbcType=DATE}
+    where complaint_id = #{complaintId,jdbcType=INTEGER}
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select complaint_id, waybill_id, complaint_detail, complaint_person, complaint_date
+    select complaint_id, waybill_id, complaint_detail, complaint_person, complaint_date,complanit_do_type,complanit_do_result,
+    complanit_do_date,complanit_reply_type,complanit_reply_date
     from complaint
     where complaint_id = #{complaintId,jdbcType=INTEGER}
   </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
-    select complaint_id, waybill_id, complaint_detail, complaint_person, complaint_date
+    select complaint_id, waybill_id, complaint_detail, complaint_person, complaint_date,complanit_do_type,complanit_do_result,
+    complanit_do_date,complanit_reply_type,complanit_reply_date
     from complaint
   </select>
+  <select id="selectAllNull" resultMap="BaseResultMap">
+    select complaint_id, waybill_id, complaint_detail, complaint_person, complaint_date,complanit_do_type,complanit_do_result,
+    complanit_do_date,complanit_reply_type,complanit_reply_date
+    from complaint
+    where complanit_do_type is null
+  </select>
+  <select id="complaintSearch" resultMap="BaseResultMap">
+    select complaint_id, waybill_id, complaint_detail, complaint_person, complaint_date,complanit_do_type,complanit_do_result,
+    complanit_do_date,complanit_reply_type,complanit_reply_date
+    from complaint
+    <where>
+      <if test="complaintPerson!=null and complaintPerson!=''">
+        complaint_person like concat('%',#{complaintPerson},'%')
+      </if>
+      <if test="waybillId!=null and waybillId!=''">
+        AND waybill_id =#{waybillId}
+      </if>
+
+    </where>
+  </select>
+  <select id="selectWaybillIdId" resultType="String">
+    select waybill_id from complaint where waybill_id=#{waybillId}
+  </select>
+  <select id="selectWaybillIdIdNull" resultType="String">
+    select waybill_id from complaint where waybill_id=#{waybillId} and waybill_id is null
+  </select>
+
 </mapper>

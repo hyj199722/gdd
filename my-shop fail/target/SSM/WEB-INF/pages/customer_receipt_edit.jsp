@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>客户回执编辑</title>
     <jsp:include page="../includes/header.jsp"></jsp:include>
     <link rel="stylesheet" href="/assets/bower_components/css/bill_add.css">
 </head>
@@ -49,44 +50,47 @@
                         </div>
 
 
-                        <form class="form-horizontal" action="/customer_receipt_save" method="post">
+                        <form id="customer_receipt_max_form" class="form-horizontal" action="/customer_receipt_edit" method="post">
                             <div class="box-body col-sm-12">
+                                <input name="customerReceiptId" value="${customer_receipt.customerReceiptId}" hidden>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">货运单编号：</label>
-                                    </label><input type="text" class="col-sm-2" placeholder="请输入编号">
+                                    </label><input name="waybillId" value="${customer_receipt.waybillId}" type="text" class="col-sm-2" placeholder="请输入编号">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">客户名称：</label><input type="text" class="col-sm-2" placeholder="请输入名称">
+                                    <label class="col-sm-2 control-label">客户名称：</label><input  name="customerReceiptName" value="${customer_receipt.customerReceiptName}" type="text" class="col-sm-2" placeholder="请输入名称">
 
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 收货验收记录：</label>
-                                    <input type="text"  placeholder="请输入内容">
+                                    <textarea name="customerReceiptRecord" style="width: 50%" class=" form-control"  rows="2" >${customer_receipt.customerReceiptRecord}</textarea>
 
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label"> 验收人：</label>
+                                    <input name="customerReceiptCheck"type="text" class="col-sm-2"value="${customer_receipt.customerReceiptCheck}"
+                                           placeholder="请输入名称">
                                     <label class="col-sm-2 control-label"> 验收时间：</label>
                                     <div  class="col-sm-2 input-group date">
-                                        <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
+                                        <div  class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input style="height:26px ;margin-bottom: 8px" type="text" class="form-control pull-right" id="datepicker">
+                                        <input  name="customerReceiptDate" value="<fmt:formatDate value="${customer_receipt.customerReceiptDate}" pattern="yyyy-MM-dd"/>" readonly="readonly" type="text" class="form-control pull-right" id="datepicker">
                                     </div>
-                                    <label class="col-sm-2 control-label"> 验收人：</label>
-                                    <input type="text" class="col-sm-2"
-                                           placeholder="请输入名称">
+
                                 </div>
 
                                 <div class="box-footer">
 
-                                    <div class="row" style="padding-left: 600px; padding-top: 10px">
+                                    <div class="row" style="padding-left: 700px; padding-top: 10px">
 
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
-                                        <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</a>&nbsp&nbsp&nbsp
-                                        <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
+                                        <button id="customer_receipt_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</button>&nbsp&nbsp&nbsp
+
+                                        <button  type="submit" class="btn bnt-sm btn-default"><i class="fa fa-edit"></i>修改</button>&nbsp&nbsp&nbsp
+                                        <a href="/customer_receipt_select" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
                                     </div>
 
                                 </div>
@@ -111,5 +115,22 @@
 
 
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<!-- 自定义模态框 -->
+<sys:modal />
+<script>
+
+    $("#customer_receipt_delete").bind("click",function () {
+        $("#modal-message").html("确认删除当前回执？");
+        $("#modal-default").modal("show");
+        $("#btnModalOk").bind("click", function () {
+            $("#modal-default").modal("hide");
+            $("#customer_receipt_max_form").attr("action","/customer_receipt_delete?customerReceiptId="+${customer_receipt.customerReceiptId})
+            $("#customer_receipt_max_form").submit();
+
+        });
+    });
+
+
+</script>
 </body>
 </html>

@@ -109,7 +109,7 @@
                                 <tbody>
                                 <c:forEach items="${pageInfo.list}" var="bill_status">
                                     <tr>
-                                        <td>${bill_status.waybillId.startsWith("c")?"货运单":"运输合同"}</td>
+
                                         <td>${bill_status.waybillId.startsWith("c")?"货运单":"运输合同"}</td>
                                         <td>${bill_status.waybillId}</td>
                                         <td>${bill_status.billStatus==0?"未填":(bill_status.billStatus==1?"已填":"作废")}</td>
@@ -164,8 +164,12 @@
                                         </c:if>
 
                                         <li><a href="/bill_destroy_search?pn=${pageInfo.pages}&waybillId=${waybillId}&billType=${billType}&billStatus=${billStatus}&timeRange=${timeRange}">末页</a> </li>
-                                        <form style="float: left" action="/bill_list">
+                                        <form style="float: left" action="/bill_destroy_search">
                                             <input type="text" name="pn" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="waybillId" value="${waybillId}" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="billType" value="${billType}" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="billStatus" value="${billStatus}" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="timeRange" value="${timeRange}" style="height:33px;width: 50px">
                                             <input type="submit" value="跳转" class="btn btn-primary">
                                         </form>
 

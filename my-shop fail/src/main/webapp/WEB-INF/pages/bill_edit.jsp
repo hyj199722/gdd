@@ -110,7 +110,7 @@
                                         <button id="bill_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</button>&nbsp&nbsp&nbsp
 
                                         <button  type="submit" class="btn bnt-sm btn-default"><i class="fa fa-edit"></i>修改</button>&nbsp&nbsp&nbsp
-                                        <a href="/bill_list" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-recycle"></i>返回</a>&nbsp&nbsp&nbsp
+                                        <a href="/bill_list" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
                                     </div>
 
                                 </div>

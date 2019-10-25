@@ -98,10 +98,10 @@ public class BillController {
 
 
     @RequestMapping(value = "/bill_delete",method = RequestMethod.POST)
-    public String bill_delete(Integer  billId, Model model)  {
+    public String bill_delete(Integer  billId, RedirectAttributes model)  {
         billService.deleteByPrimaryKeyWithoutWay(billId);
         billService.deleteBill(billId);
-        model.addAttribute("baseResult",BaseResult.success("删除票据成功"));
+        model.addFlashAttribute("baseResult",BaseResult.success("删除票据成功"));
         return "redirect:bill_list";
 
     }
@@ -226,6 +226,7 @@ public class BillController {
 
     @RequestMapping(value = "/bill_destroy_search")
     public String bill_destroy_search(@RequestParam(value = "pn",required = false,defaultValue = "1")Integer pn,String waybillId,String billType,String billStatus,String timeRange,Model model){
+
         model.addAttribute("waybillId",waybillId);
         model.addAttribute("billType",billType);
         model.addAttribute("billStatus",billStatus);
@@ -262,17 +263,15 @@ public class BillController {
             String[] split = timeRange.split(" - ");
              String be=split[0].replace("/","-");
              String af=split[1].replace("/","-");
-            System.out.println(be);
-            System.out.println(af);
+
 
             try {
                 timeRange1 = simpleDateFormat.parse(be);
                 timeRange2 = simpleDateFormat.parse(af);
-                System.out.println(timeRange1);
-                System.out.println(timeRange2);
+
 
             } catch (ParseException e) {
-                model.addAttribute("baseResult",BaseResult.fail("因为黄宇炮的原因，导致系统开了一次小差，请重试"));
+                model.addAttribute("baseResult",BaseResult.fail("因为一点小原因，导致系统开了一次小差，请重试"));
                 return "bill_state";
 //            e.printStackTrace();
             }
@@ -305,7 +304,7 @@ public class BillController {
             return "bill_destroy";
         }
         Bill_Status bill_status = billService.selectSingleWayBillId(waybillId);
-        System.out.println(bill_status);
+
 
         if (bill_status==null){
             model.addAttribute("baseResult",BaseResult.fail("单据编号不存在或单据编号错误，请查询后在重试"));
