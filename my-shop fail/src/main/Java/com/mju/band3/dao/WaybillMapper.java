@@ -1,6 +1,8 @@
 package com.mju.band3.dao;
 
 import com.mju.band3.entity.Waybill;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,5 +21,7 @@ public interface WaybillMapper {
 
     List<Waybill> waybillSearch(Map<String,Object> map);
 
-    void changeStatus(String waybillId,Integer status);
+    void changeStatus(@Param("waybillId")String waybillId, @Param("status")Integer status);
+
+    List<Waybill> selectByLocation(Map<String,String> map);
 }

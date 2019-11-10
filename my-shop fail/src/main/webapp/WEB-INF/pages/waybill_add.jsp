@@ -169,11 +169,8 @@
                                     <textarea style="height:72px;width:680px" maxlength="255" name="waybillRemarks" placeholder="请输入备注"> <c:if test="${waybill.waybillRemarks!=null}"> "${waybill.waybillRemarks}" </c:if></textarea>
                                 </div>
                                 <div class="box-footer">
-
-                                    </button>
-
-                                    <button type="button" class="btn btn-default" onclick="window.location.href=document.referrer">返回上一级</button>
-                                    <button type="submit"  class="btn btn-info ">提交</button>&nbsp&nbsp&nbsp
+                                    <a href="/waybill_select" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
+                                    <button type="submit"  class="btn btn-info pull-right ">提交</button>
 
                                 </div>
 

@@ -30,6 +30,10 @@
       driver_receipt_date = #{driverReceiptDate,jdbcType=DATE}
     where driver_receipt_id = #{driverReceiptId,jdbcType=INTEGER}
   </update>
+  <update id="update_driver_receipt_edit">
+    update driver_receipt set contract_id=#{contractId},driver_receipt_name=#{driverReceiptName},driver_receipt_record=#{driverReceiptRecord},driver_receipt_check=#{driverReceiptCheck}
+     ,driver_receipt_date=#{driverReceiptDate}where driver_receipt_id = #{driverReceiptId,jdbcType=INTEGER}
+  </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select driver_receipt_id, contract_id, driver_receipt_name, driver_receipt_record, 
     driver_receipt_check, driver_receipt_date
@@ -40,5 +44,28 @@
     select driver_receipt_id, contract_id, driver_receipt_name, driver_receipt_record, 
     driver_receipt_check, driver_receipt_date
     from driver_receipt
+  </select>
+
+  <select id="DriverReceiptSearch" resultMap="BaseResultMap">
+    select driver_receipt_id, contract_id, driver_receipt_name, driver_receipt_record,
+    driver_receipt_check, driver_receipt_date
+    from driver_receipt
+    <where>
+      <if test="driverReceiptName!=null and driverReceiptName!=''">
+        driver_receipt_name like concat('%',#{driverReceiptName},'%')
+      </if>
+      <if test="contractId!=null and contractId!=''">
+        AND contract_id =#{contractId}
+      </if>
+      <if test="timeRange1!=null and timeRange2!=null ">
+        AND driver_receipt_date between #{timeRange1} and #{timeRange2}
+      </if>
+    </where>
+  </select>
+  <select id="selectContractId" resultType="String">
+    select contract_id from driver_receipt where contract_id=#{contractId}
+  </select>
+  <select id="selectContractIdNull" resultType="String">
+        select contract_id from driver_receipt where contract_id=#{contractId}and contract_id is null
   </select>
 </mapper>

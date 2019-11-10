@@ -46,36 +46,86 @@
 
 
                     <div class="box">
-
-                        <form class="form-horizontal" action="#" method="post">
+                        <form class="form-horizontal" action="/itemdrive_select" method="get">
                             <div class="row" style="padding-left: 20px; padding-top: 10px">
-                                <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>全选</a>&nbsp&nbsp&nbsp
-                                <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>反选</a>&nbsp&nbsp&nbsp
-                                <a href="#" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>装货</a>&nbsp&nbsp&nbsp
+                                <button type="submit" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>卸货</button>&nbsp&nbsp&nbsp
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th><input type="checkbox" class="minimal icheck_master"></th>
+                                        <th>货物单编号</th>
+                                        <th>品名</th>
+                                        <th>货号</th>
+                                        <th>件数</th>
+                                        <th>重量</th>
+                                        <th>体积</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${items}" var="item">
+                                        <tr>
+                                            <td><input name="unload" type="checkbox" class="minimal" value="${item.itemId};${item.waybillId}"></td>
+                                            <td>${item.waybillId}</td>
+                                            <td>${item.itemName}</td>
+                                            <td>${item.itemId}</td>
+                                            <td>${item.itemNum}</td>
+                                            <td>${item.itemWeight}</td>
+                                            <td>${item.itemSize}</td>
+
+
+                                        </tr>
+                                    </c:forEach>
+
+                                    </tbody>
+
+
+                                </table>
+                                <input type="hidden" name="contractId" value="${contractId}">
+                            </div>
+                        </form>
+                        <form class="form-horizontal" action="/itemdrive_select" method="get">
+                            <div class="box-body col-sm-12 page">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">起点站：</label>
+                                    <input type="text"  name="waybillBegin" class=" col-sm-2 " placeholder="请输入起点站">
+                                    <label class="col-sm-2 control-label">终点站：</label>
+                                    <input type="text"  name="waybillEnd" class=" col-sm-2 " placeholder="请输入终点站">
+                                    <input type="hidden" name="contractId"value="${contractId}">
+                                    <button type="submit" class="btn btn-info">查询</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal" action="/itemdrive_select" method="get">
+                            <div class="row" style="padding-left: 20px; padding-top: 10px">
+                                <button type="submit" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>装货</button>&nbsp&nbsp&nbsp
                             </div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
+                                    <th><input type="checkbox" class="minimal icheck_master"></th>
                                     <th>货物单编号</th>
                                     <th>品名</th>
-                                    <th>货号（件）</th>
+                                    <th>货号</th>
                                     <th>件数</th>
                                     <th>重量</th>
                                     <th>体积</th>
-                                    <th>卸货件数</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${users}" var="users">
+                                <c:forEach items="${pageInfo.list}" var="item">
                                     <tr>
-                                        <td> <a href="/itemdriver_selectd" >${users.username}</a></td>
-                                        <td>${users.email}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
-                                        <td>${users.password}</td>
+                                        <td><input name="checkbox" type="checkbox" class="minimal" value="${item.itemId};${item.waybillId}"></td>
+                                        <td>${item.waybillId}</td>
+                                        <td>${item.itemName}</td>
+                                        <td>${item.itemId}</td>
+                                        <td>${item.itemNum}</td>
+                                        <td>${item.itemWeight}</td>
+                                        <td>${item.itemSize}</td>
 
 
                                     </tr>
@@ -85,18 +135,64 @@
 
 
                             </table>
+                            <input type="hidden" name="contractId" value="${contractId}">
                         </div>
                         </form>
-                        <div class="page">
-                            <ul class="pagination ">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
+                        <%--分页文字信息--%>
+                        <div class="row" >
+                            <%--分页文字信息--%>
+                            <div class="col-md-6">
+                                当前第${pageInfo.pageNum}页，总${pageInfo.pages}页，总共${pageInfo.total}条记录
+                            </div>
+                            <%--分页条信息--%>
+                            <div class="col-md-6" style="padding-left: 150px">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        <li><a href="/itemdrive_select?pn=1&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&contractId=${contractId}">首页</a> </li>
+                                        <%--如果有上一页，则可以通过减一操作移动，且有<符号&laquo，否则连点<的符号也没有，也就不能移动上一页--%>
+                                        <c:if test="${pageInfo.hasPreviousPage}">
+                                            <li>
+                                                <a href="/itemdrive_select?pn=${pageInfo.pageNum-1}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&contractId=${contractId}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+
+
+                                        <%--如果是当前页，则显示高亮--%>
+                                        <c:forEach items="${pageInfo.navigatepageNums}" var="page_Num">
+                                            <c:if test="${page_Num==pageInfo.pageNum}">
+                                                <li class="active"><a href="#">${page_Num}</a></li>
+                                            </c:if>
+                                            <c:if test="${page_Num!=pageInfo.pageNum}">
+                                                <li><a href="/itemdrive_select?pn=${page_Num}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&contractId=${contractId}">${page_Num}</a></li>
+                                            </c:if>
+
+                                        </c:forEach>
+                                        <c:if test="${pageInfo.hasNextPage}">
+                                            <li>
+                                                <a href="/itemdrive_select?pn=${pageInfo.pageNum+1}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&contractId=${contractId}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </c:if>
+
+                                        <li><a href="/itemdrive_select?pn=${pageInfo.pages}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&contractId=${contractId}">末页</a> </li>
+                                        <form style="float: left" action="/waybill_select">
+                                            <input type="text" name="pn" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="waybillId" value="${waybillId}" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="billType" value="${billType}" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="billStatus" value="${billStatus}" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="timeRange" value="${timeRange}" style="height:33px;width: 50px">
+                                            <input type="submit" value="跳转" class="btn btn-primary">
+                                        </form>
+
+
+                                    </ul>
+                                </nav>
+                            </div>
+
+
                         </div>
                         <!-- /.box-body -->
 
@@ -118,5 +214,21 @@
 
 
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<sys:modal />
+<script>
+
+    $("#item_delete").bind("click",function () {
+        $("#modal-message").html("确认删除当前物品？");
+        $("#modal-default").modal("show");
+        $("#btnModalOk").bind("click", function () {
+            $("#modal-default").modal("hide");
+            $("#item_form").attr("action","/item_delete")
+            $("#item_form").submit();
+
+        });
+    });
+
+
+</script>
 </body>
 </html>

@@ -95,4 +95,26 @@
     contract_money, contract_insurance, contract_prepay, contract_date, contract_remarks
     from contract
   </select>
+  <select id="contractSearch" resultMap="BaseResultMap">
+  select * from contract
+  <where>
+    <if test="contractId!=null and contractId!=''">
+      contract_id like concat('%',#{contractId},'%')
+    </if>
+    <if test="contractDriver!=null and contractDriver!=''">
+      AND contract_driver like concat(#{contractDriver},'%')
+    </if>
+    <if test="contractStatus!=null and contractStatus!=''">
+      AND contract_status =#{contractStatus}
+    </if>
+    <if test="timeRange1!=null and timeRange2!=null ">
+      AND contract_date between #{timeRange1} and #{timeRange2}
+    </if>
+  </where>
+  </select>
+  <update id="changeStatus" parameterType="com.mju.band3.entity.Contract">
+    update contract
+    set contract_status = #{status,jdbcType=INTEGER}
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </update>
 </mapper>

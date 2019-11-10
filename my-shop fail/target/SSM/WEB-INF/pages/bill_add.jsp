@@ -83,15 +83,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"> 领票时间：</label>
-
-                                    <div  class="col-sm-2 input-group date">
-                                        <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input style="height:26px ;margin-bottom: 8px"  type="text" value="<fmt:formatDate value="${localDate}" pattern="yyyy-MM-dd"></fmt:formatDate> " name="billDate" class="form-control pull-right" id="datepicker">
-                                    </div>
-
                                     <label class="col-sm-2 control-label"> 分发人：</label>
                                     <select name="billGiver" class="col-sm-2 select">
                                         <option selected>请选择</option>
@@ -100,11 +91,23 @@
                                         </c:forEach>
 
                                     </select>
+                                    <label class="col-sm-2 control-label"> 领票时间：</label>
+
+                                    <div  class="col-sm-2 input-group date">
+                                        <div style="height:26px ;margin-bottom: 8px" class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input  type="text" value="<fmt:formatDate value="${localDate}" pattern="yyyy-MM-dd"></fmt:formatDate> " name="billDate" class="form-control pull-right" id="datepicker">
+                                    </div>
+
+
+
+
                                 </div>
 
 
                                 <div class="box-footer">
-                                    <a href="/bill_list" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-recycle"></i>返回</a>&nbsp&nbsp&nbsp
+                                    <a href="/bill_list" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
                                     <button type="submit" class="btn btn-info pull-right">提交</button>
 
                                 </div>

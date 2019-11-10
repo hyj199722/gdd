@@ -1,6 +1,8 @@
 package com.mju.band3.web.Controller;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.util.StringUtil;
 import com.mju.band3.entity.User;
 import com.mju.band3.entity.Waybill;
@@ -9,6 +11,7 @@ import com.mju.band3.service.WaybillService;
 import com.mju.band3.utils.BaseResult;
 import com.mju.band3.utils.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -45,7 +48,7 @@ public class WaybillController {
     }
 
     @RequestMapping(value = "/waybill_edit", method = RequestMethod.GET)
-    public String waybill_edit(HttpServletRequest request, Model model, @RequestParam(value = "waybillId") String waybillId) {
+    public String waybill_edit(HttpServletRequest request,RedirectAttributes redirectAttributes, Model model, @RequestParam(value = "waybillId") String waybillId) {
         String waybillId1 = null;
         if (waybillId.isEmpty()) {
             waybillId1 = request.getAttribute("waybillEditId").toString();
@@ -53,6 +56,10 @@ public class WaybillController {
             waybillId1 = waybillId;
         }
         Waybill waybill = waybillService.getWaybill(waybillId1);
+        if (waybill.getWaybillStatus()!=1){
+            redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("货运单已发货，不可编辑"));
+        }
+        model.addAttribute("staff", waybillService.getStaff());
         model.addAttribute("waybill", waybill);
         return "waybill_edit";
 
@@ -64,18 +71,33 @@ public class WaybillController {
         redirectAttributes.addFlashAttribute("waybill", waybill);
         String waybillDateS = request.getParameter("waybillDate");
         String waybillFillDateS = request.getParameter("waybillFillDate");
-        System.out.println(waybillDateS);
-        System.out.println(waybillFillDateS);
+/*        System.out.println(waybillDateS);
+        System.out.println(waybillFillDateS);*/
         String waybillId = request.getParameter("waybillId");
         if (StringUtils.isEmpty(waybill.getWaybillId())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货运单编号"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
+
         }
         if ("无可填写货运单".equals(waybill.getWaybillId())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("无可填写货运单,请工作人员领票后再添加"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
-        if (StringUtils.isEmpty(waybillDateS)) {
+        if (StringUtils.isEmpty(waybill.getWaybillDate())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写托运日期"));
             return "redirect:waybill_add";
         } else {
@@ -86,75 +108,201 @@ public class WaybillController {
         }
         if (StringUtils.isEmpty(waybill.getWaybillBegin())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写起始站"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillEnd())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写到达站"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillRecive())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写收货客户"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillReciveAddress())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写收货客户电话"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillReciveAddress())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写收货客户地址"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillSend())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写发货客户"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillSendAddress())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写发货客户地址"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillSendPhone())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写发货客户电话"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillLoan())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写贷款"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillCommission())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写佣金率"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if ("请选择".equals(waybill.getWaybillSalesman())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请选择业务员"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillFreight())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写运费金额"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillInsurance())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写保险金额"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (0 == waybill.getWaybillPayType()) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请选择付款方式"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (0 == waybill.getWaybillReciveType()) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请选择取货方式"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
         if (StringUtils.isEmpty(waybill.getWaybillFill())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写填票人"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         }
-        if (StringUtils.isEmpty(waybillFillDateS)) {
+        if (StringUtils.isEmpty(waybill.getWaybillFillDate())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写填票日期"));
-            return "redirect:waybill_add";
+            if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                return "redirect:waybill_add";
+            }else{
+                Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                model.addAttribute("staff", waybillService.getStaff());
+                model.addAttribute("waybill", waybill1);
+                return "waybill_edit";
+            }
         } else {
             if (!this.isRqFormat(waybillFillDateS)) {
                 redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("填票日期格式错误!范例:2019-02-14"));
-                return "redirect:waybill_add";
+                if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+                    return "redirect:waybill_add";
+                }else{
+                    Waybill waybill1 = waybillService.getWaybill(waybill.getWaybillId());
+                    model.addAttribute("staff", waybillService.getStaff());
+                    model.addAttribute("waybill", waybill1);
+                    return "waybill_edit";
+                }
             }
         }
 
@@ -173,27 +321,50 @@ public class WaybillController {
         System.out.println(waybill.getWaybillDate());
         System.out.println(waybill.getWaybillFillDate());
         waybill.setWaybillStatus(1);
-        waybillService.insert(waybill);
+        if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+            waybillService.insert(waybill);
+        }else{
+            waybillService.update(waybill);
+        }
         request.setAttribute("waybillEditId", waybill.getWaybillId());
-        return "/waybill_edit";
+        if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
+            return "/waybill_edit";
+        }else{
+            return "redirect:waybill_select";
+        }
+
     }
 
     @RequestMapping(value = "/waybill_select", method = RequestMethod.GET)
-    public String waybill_select(Model model, HttpServletRequest request) {
+    public String waybill_select(Model model, HttpServletRequest request, @RequestParam(value = "pn",required = false,defaultValue = "1") Integer pn) {
         if (request.getAttribute("waybills") != null) {
             List<Waybill> waybills = (List<Waybill>) request.getAttribute("waybills");
             model.addAttribute("waybills", waybills);
-            System.out.println("进入1");
         } else {
             List<Waybill> waybills = waybillService.getWaybills();
             model.addAttribute("waybills", waybills);
-            System.out.println("进入2");
         }
+        Integer pageNum=null;
+        if (request.getParameter("pageNum")!=null){
+            pageNum = Integer.parseInt(request.getParameter("pageNum"));
+        }
+        PageHelper.startPage(pageNum==null?pn:pageNum,10);
+        List<Waybill> waybills = waybillService.getWaybills();
+        PageInfo pageInfo=new PageInfo(waybills,5);
+        model.addAttribute("pageInfo",pageInfo);
         return "waybill_select";
     }
-
-    @RequestMapping(value = "/waybill_search", method = RequestMethod.POST)
-    public String waybill_search(@RequestParam(value = "timeRange", required = false) String timeRange, Waybill waybill, HttpServletRequest request) {
+    @RequestMapping(value = "/waybill_search", method = RequestMethod.GET)
+    public String waybill_search(@RequestParam(value = "timeRange", required = false) String timeRange,
+                                 @RequestParam(value = "pn",required = false,defaultValue = "1") Integer pn,
+                                 @RequestParam(value = "waybillId",required = false)String waybillId,
+                                 @RequestParam(value = "waybillSend" ,required = false)String waybillSend,
+                                 @RequestParam(value = "waybillBegin", required = false)String waybillBegin,
+                                 @RequestParam(value = "waybillEnd" ,required=false) String waybillEnd,
+                                 @RequestParam(value = "waybillStatus",required = false)String waybillStatus,
+                                 @RequestParam(value = "waybillRecive",required = false)String waybillRecive,
+                                 Model model,
+                                 HttpServletRequest request) {
         DateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
         Date timeRange1 = null;
         Date timeRange2 = null;
@@ -207,26 +378,40 @@ public class WaybillController {
                 System.out.println(timeRange1);
                 System.out.println(timeRange2);
             } catch (ParseException e) {
-                return "bill_state";
+                return "redirect:waybill_add";
 //            e.printStackTrace();
             }
         }
-        Map<String, Object> map = new HashMap<>();
-        map.put("waybillId", waybill.getWaybillId());
-        map.put("waybillSend", waybill.getWaybillSend());
-        map.put("waybillRecive", waybill.getWaybillRecive());
-        map.put("waybillBegin", waybill.getWaybillBegin());
-        map.put("waybillEnd", waybill.getWaybillEnd());
-        map.put("timeRange1", timeRange1);
-        map.put("timeRange2", timeRange2);
-        List<Waybill> waybills = waybillService.waybillSearch(map);
-        request.setAttribute("waybills", waybills);
+            Map<String, Object> map = new HashMap<>();
+            map.put("waybillId", waybillId);
+            map.put("waybillSend", waybillSend);
+            map.put("waybillRecive", waybillRecive);
+            map.put("waybillBegin", waybillBegin);
+            map.put("waybillEnd", waybillEnd);
+            map.put("waybillStatus",waybillStatus);
+            map.put("timeRange1", timeRange1);
+            map.put("timeRange2", timeRange2);
+            List<Waybill> waybills = waybillService.waybillSearch(map);
+            PageInfo pageInfo=new PageInfo(waybills,5);
+            model.addAttribute("pageInfo",pageInfo);
+        Integer pageNum=null;
+        if (request.getParameter("pageNum")!=null){
+            pageNum = Integer.parseInt(request.getParameter("pageNum"));
+        }
+        PageHelper.startPage(pageNum==null?pn:pageNum,10);
+        model.addAttribute("waybillId", waybillId);
+        model.addAttribute("waybillSend", waybillSend);
+        model.addAttribute("waybillRecive", waybillRecive);
+        model.addAttribute("waybillBegin", waybillBegin);
+        model.addAttribute("waybillEnd", waybillEnd);
+        model.addAttribute("waybillStatus",waybillStatus);
+        model.addAttribute("timeRange", timeRange);
         return "waybill_select";
     }
 
-    @RequestMapping(value = "/waybill_delete", method = RequestMethod.GET)
-    public String waybill_delete(@RequestParam(value = "waybillId") String waybillId) {
-        waybillService.deleteWaybill(waybillId);
+    @RequestMapping(value = "/waybill_delete", method = RequestMethod.POST)
+    public String waybill_delete(Waybill waybill) {
+        waybillService.deleteWaybill(waybill.getWaybillId());
         return "redirect:waybill_select";
     }
 

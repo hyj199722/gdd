@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 
 <!DOCTYPE html>
 <html>
@@ -47,15 +47,12 @@
 
                     <div class="box">
                         <div class="box-header">
-
-
-                            <form class="form-horizontal" action="/item_save" method="post">
+                            <c:if test="${status==1}">
+                            <form class="form-horizontal" action="/item_save" method="post" id="item_form">
                                 <div class="box-body col-sm-12 page">
-
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">货运单编号：</label>
                                         <input type="text" name="waybillId" readonly value="${waybillId}" class="col-sm-2" placeholder="请输入编号">
-
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">货物名称：</label>
@@ -104,12 +101,12 @@
 
                                     <div class="row" style="padding-left: 50px; padding-top: 10px">
                                         <button  type="post" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>添加</button>&nbsp&nbsp&nbsp
-                                        <a href="/item_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</a>&nbsp&nbsp&nbsp
-                                        <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
-                                    </div>
+                                        <button id="item_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</button>&nbsp&nbsp&nbsp</c:if>
+                                        <a href="/waybill_edit?waybillId=${waybillId}" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
+                                        <c:if test="${status==1}"> </div>
                                 </div>
                             </form>
-
+                                </c:if>
                         </div>
 
                         <!-- /.box-header -->
@@ -127,10 +124,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${items}" var="item">
+                                <c:forEach items="${pageInfo.list}" var="item">
                                     <tr>
                                         <td>${item.itemName}</td>
-                                        <td> <a href="/item_edit?itemId=${item.itemId}" >${item.itemId}</a></td>
+                                        <td>  <c:if test="${status==1}"><a href="/item_edit?itemId=${item.itemId}&waybillId=${item.waybillId}" ></c:if>${item.itemId} <c:if test="${status==1}"></a></c:if></td>
                                         <td><c:if test="${item.itemWrap ==1}" >纸箱</c:if>
                                             <c:if test="${item.itemWrap ==2}" >袋装</c:if>
                                             <c:if test="${item.itemWrap ==3}" >桶装</c:if>
@@ -148,16 +145,58 @@
                             </table>
                         </div>
 
-                        <div class="page">
-                            <ul class="pagination ">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
+                            <%--分页文字信息--%>
+                            <div class="row" >
+                                <%--分页文字信息--%>
+                                <div class="col-md-6">
+                                    当前第${pageInfo.pageNum}页，总${pageInfo.pages}页，总共${pageInfo.total}条记录
+                                </div>
+                                <%--分页条信息--%>
+                                <div class="col-md-6" style="padding-left: 150px">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination">
+                                            <li><a href="/item_add?pn=1&waybillId=${waybillId}">首页</a> </li>
+                                            <%--如果有上一页，则可以通过减一操作移动，且有<符号&laquo，否则连点<的符号也没有，也就不能移动上一页--%>
+                                            <c:if test="${pageInfo.hasPreviousPage}">
+                                                <li>
+                                                    <a href="/item_add?pn=${pageInfo.pageNum-1}&waybillId=${waybillId}" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    </a>
+                                                </li>
+                                            </c:if>
+
+
+                                            <%--如果是当前页，则显示高亮--%>
+                                            <c:forEach items="${pageInfo.navigatepageNums}" var="page_Num">
+                                                <c:if test="${page_Num==pageInfo.pageNum}">
+                                                    <li class="active"><a href="#">${page_Num}</a></li>
+                                                </c:if>
+                                                <c:if test="${page_Num!=pageInfo.pageNum}">
+                                                    <li><a href="/item_add?pn=${page_Num}&waybillId=${waybillId}">${page_Num}</a></li>
+                                                </c:if>
+
+                                            </c:forEach>
+                                            <c:if test="${pageInfo.hasNextPage}">
+                                                <li>
+                                                    <a href="/item_add?pn=${pageInfo.pageNum+1}&waybillId=${waybillId}" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    </a>
+                                                </li>
+                                            </c:if>
+
+                                            <li><a href="/item_add?pn=${pageInfo.pages}&waybillId=${waybillId}">末页</a> </li>
+                                            <form style="float: left" action="/item_add">
+                                                <input type="text" name="pn" style="height:33px;width: 50px">
+                                                <input hidden type="text" name="waybillId" value="${waybillId}" style="height:33px;width: 50px">
+                                                <input type="submit" value="跳转" class="btn btn-primary">
+                                            </form>
+
+
+                                        </ul>
+                                    </nav>
+                                </div>
+
+
                         </div>
                         <!-- /.box-body -->
 
@@ -179,5 +218,20 @@
 
 
 <jsp:include page="../includes/footer.jsp"></jsp:include>
+<sys:modal />
+<script>
+
+    $("#item_delete").bind("click",function () {
+        $("#modal-message").html("确认删除所有物品？");
+        $("#modal-default").modal("show");
+        $("#btnModalOk").bind("click", function () {
+            $("#modal-default").modal("hide");
+            $("#item_form").attr("action","/item_delete_all")
+            $("#item_form").submit();
+        });
+    });
+
+
+</script>
 </body>
 </html>

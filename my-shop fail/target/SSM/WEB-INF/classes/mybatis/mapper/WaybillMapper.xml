@@ -113,6 +113,9 @@
       <if test="waybillEnd!=null and waybillEnd!=''">
         AND waybill_end =#{waybillEnd}
       </if>
+      <if test="waybillStatus!=null and waybillStatus!=0">
+        AND waybill_status =#{waybillStatus}
+      </if>
       <if test="timeRange1!=null and timeRange2!=null ">
         AND waybill_date between #{timeRange1} and #{timeRange2}
       </if>
@@ -123,4 +126,18 @@
     set waybill_status = #{status,jdbcType=INTEGER}
     where waybill_id = #{waybillId,jdbcType=VARCHAR}
   </update>
+  <select id="selectByLocation" resultMap="BaseResultMap">
+    select * from waybill
+    <where>
+      <if test="begin!=null and begin!=''">
+        waybill_begin =#{begin}
+      </if>
+      <if test="end!=null and end!=''">
+        AND waybill_end =#{end}
+      </if>
+      <if test="timeRange1!=null and timeRange2!=null ">
+        AND waybill_date between #{timeRange1} and #{timeRange2}
+      </if>
+    </where>
+  </select>
 </mapper>

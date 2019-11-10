@@ -1,5 +1,7 @@
 package com.mju.band3.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Contract {
@@ -19,10 +21,12 @@ public class Contract {
 
     private String contractBegin;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date contractBeginDate;
 
     private String contractEnd;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date contractEndDate;
 
     private String contractRecive;
@@ -47,6 +51,7 @@ public class Contract {
 
     private Double contractPrepay;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date contractDate;
 
     private String contractRemarks;
@@ -241,5 +246,35 @@ public class Contract {
 
     public void setContractStatus(Integer contractStatus) {
         this.contractStatus = contractStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "contractId='" + contractId + '\'' +
+                ", contractStatus=" + contractStatus +
+                ", contractDriver='" + contractDriver + '\'' +
+                ", contractCarnum='" + contractCarnum + '\'' +
+                ", contractOperationLicense='" + contractOperationLicense + '\'' +
+                ", contractDriverLicense='" + contractDriverLicense + '\'' +
+                ", contractDrivingLicense='" + contractDrivingLicense + '\'' +
+                ", contractBegin='" + contractBegin + '\'' +
+                ", contractBeginDate=" + contractBeginDate +
+                ", contractEnd='" + contractEnd + '\'' +
+                ", contractEndDate=" + contractEndDate +
+                ", contractRecive='" + contractRecive + '\'' +
+                ", contractRecivePhone='" + contractRecivePhone + '\'' +
+                ", contractReciveAddress='" + contractReciveAddress + '\'' +
+                ", contractBond=" + contractBond +
+                ", contractService=" + contractService +
+                ", contractPayType=" + contractPayType +
+                ", contractDeposit=" + contractDeposit +
+                ", contractMoneyType=" + contractMoneyType +
+                ", contractMoney=" + contractMoney +
+                ", contractInsurance=" + contractInsurance +
+                ", contractPrepay=" + contractPrepay +
+                ", contractDate=" + contractDate +
+                ", contractRemarks='" + contractRemarks + '\'' +
+                '}';
     }
 }

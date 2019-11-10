@@ -52,14 +52,14 @@
                             </div>
                             <h2></h2>
                             <h3 class="box-title">查询条件</h3>
-                            <form class="form-horizontal" action="/waybill_search" method="post">
+                            <form class="form-horizontal" action="/waybill_search" method="get">
                                 <div class="box-body col-sm-12 page">
 
                                     <div class="form-group">
                                     <label class="col-sm-2 control-label">货运单号：</label>
                                     <input type="text" name="waybillId" class="col-sm-2" placeholder="请输入编号">
                                         <label class="col-sm-2 control-label">发货客户：</label>
-                                        <input type="text" name="waybillSend" class="col-sm-2" placeholder="请输入客户">
+                                        <input type="text" name="waybillSend" class="col-sm-2" value="${waybill.waybillSend}" placeholder="请输入客户">
                                     </div>
 
                                     <div class="form-group">
@@ -67,11 +67,11 @@
                                         <input type="text" name="waybillRecive" class="col-sm-2" placeholder="请输入客户">
                                         <label class="col-sm-2 control-label">托运时间：</label>
                                         <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <input style="width: 200px" name="timeRange" type="text" class="form-control pull-left" id="reservation">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
                                         </div>
+                                        <input style="width: 200px" name="timeRange" type="text" class="form-control pull-left" id="reservation">
+                                    </div>
 
                                     </div>
 
@@ -92,7 +92,7 @@
                                             <option value="3">已送达</option>
                                             <option value="4">已提货</option>
                                         </select>
-                                        <button type="submit" class="btn btn-info pull-right">查询</button>
+                                            <button type="submit" class="btn btn-info pull-right">查询</button>
                                     </div>
 
                                 </div>
@@ -115,7 +115,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${waybills}" var="waybill">
+                                <c:forEach items="${pageInfo.list}" var="waybill">
                                     <tr>
                                         <td> <a href="/waybill_edit?waybillId=${waybill.waybillId}" >${waybill.waybillId}</a></td>
                                         <td>${waybill.waybillBegin}</td>
@@ -135,54 +135,62 @@
 
                             </table>
                         </div>
-                        <div class="row" >
                             <%--分页文字信息--%>
-                            <div class="col-md-6">
-                                当前第${pageInfo.pageNum}页，总${pageInfo.pages}页，总共${pageInfo.total}条记录
-                            </div>
-                            <%--分页条信息--%>
-                            <div class="col-md-6" style="padding-left: 150px">
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination">
-                                        <li><a href="/bill_list?pn=1">首页</a> </li>
-                                        <%--如果有上一页，则可以通过减一操作移动，且有<符号&laquo，否则连点<的符号也没有，也就不能移动上一页--%>
-                                        <c:if test="${pageInfo.hasPreviousPage}">
-                                            <li>
-                                                <a href="/bill_list?pn=${pageInfo.pageNum-1}" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            </li>
-                                        </c:if>
+                                <div class="row" >
+                                    <%--分页文字信息--%>
+                                    <div class="col-md-6">
+                                        当前第${pageInfo.pageNum}页，总${pageInfo.pages}页，总共${pageInfo.total}条记录
+                                    </div>
+                                    <%--分页条信息--%>
+                                    <div class="col-md-6" style="padding-left: 150px">
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination">
+                                                <li><a href="/waybill_search?pn=1&waybillId=${waybillId}&waybillSend=${waybillSend}&waybillRecive=${waybillRecive}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&timeRange=${timeRange}&waybillStatus="${waybillStatus}">首页</a> </li>
+                                                <%--如果有上一页，则可以通过减一操作移动，且有<符号&laquo，否则连点<的符号也没有，也就不能移动上一页--%>
+                                                <c:if test="${pageInfo.hasPreviousPage}">
+                                                    <li>
+                                                        <a href="/waybill_search?pn=${pageInfo.pageNum-1}&waybillId=${waybillId}&waybillSend=${waybillSend}&waybillRecive=${waybillRecive}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&timeRange=${timeRange}&waybillStatus="${waybillStatus}" aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
 
 
-                                        <%--如果是当前页，则显示高亮--%>
-                                        <c:forEach items="${pageInfo.navigatepageNums}" var="page_Num">
-                                            <c:if test="${page_Num==pageInfo.pageNum}">
-                                                <li class="active"><a href="#">${page_Num}</a></li>
-                                            </c:if>
-                                            <c:if test="${page_Num!=pageInfo.pageNum}">
-                                                <li><a href="/bill_list?pn=${page_Num}">${page_Num}</a></li>
-                                            </c:if>
+                                                <%--如果是当前页，则显示高亮--%>
+                                                <c:forEach items="${pageInfo.navigatepageNums}" var="page_Num">
+                                                    <c:if test="${page_Num==pageInfo.pageNum}">
+                                                        <li class="active"><a href="#">${page_Num}</a></li>
+                                                    </c:if>
+                                                    <c:if test="${page_Num!=pageInfo.pageNum}">
+                                                        <li><a href="/waybill_search?pn=${page_Num}&waybillId=${waybillId}&waybillSend=${waybillSend}&waybillRecive=${waybillRecive}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&timeRange=${timeRange}&waybillStatus="${waybillStatus}">${page_Num}</a></li>
+                                                    </c:if>
 
-                                        </c:forEach>
-                                        <c:if test="${pageInfo.hasNextPage}">
-                                            <li>
-                                                <a href="/bill_list?pn=${pageInfo.pageNum+1}" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
-                                            </li>
-                                        </c:if>
+                                                </c:forEach>
+                                                <c:if test="${pageInfo.hasNextPage}">
+                                                    <li>
+                                                        <a href="/waybill_search?pn=${pageInfo.pageNum+1}&waybillId=${waybillId}&waybillSend=${waybillSend}&waybillRecive=${waybillRecive}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&timeRange=${timeRange}&waybillStatus="${waybillStatus}" aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
 
-                                        <li><a href="/bill_list?pn=${pageInfo.pages}">末页</a> </li>
-                                        <form style="float: left" action="/bill_list">
-                                            <input type="text" name="pn" style="height:33px;width: 50px">
-                                            <input type="submit" value="跳转" class="btn btn-primary">
-                                        </form>
+                                                <li><a href="/waybill_search?pn=${pageInfo.pages}&waybillId=${waybillId}&waybillSend=${waybill.waybillSend}&waybillRecive=${waybillRecive}&waybillBegin=${waybillBegin}&waybillEnd=${waybillEnd}&timeRange=${timeRange}&waybillStatus="${waybillStatus}">末页</a> </li>
+                                                <form style="float: left" action="/waybill_search">
+                                                    <input type="text" name="pn" style="height:33px;width: 50px">
+                                                    <input hidden type="text" name="waybillId" value="${waybillId}" style="height:33px;width: 50px">
+                                                    <input hidden type="text" name="waybillSend" value="${waybillSend}" style="height:33px;width: 50px">
+                                                    <input hidden type="text" name="waybillRecive" value="${waybillRecive}" style="height:33px;width: 50px">
+                                                    <input hidden type="text" name="waybillBegin" value="${waybillBegin}" style="height:33px;width: 50px">
+                                                    <input hidden type="text" name="waybillEnd" value="${waybillEnd}" style="height:33px;width: 50px">
+                                                    <input hidden type="text" name="timeRange" value="${timeRange}" style="height:33px;width: 50px">
+                                                    <input hidden type="text" name="waybillStatus" value="${waybillStatus}" style="height:33px;width: 50px">
+                                                    <input type="submit" value="跳转" class="btn btn-primary">
+                                                </form>
 
 
-                                    </ul>
-                                </nav>
-                            </div>
+                                            </ul>
+                                        </nav>
+                                    </div>
 
                         </div>
                         <!-- /.box-body -->

@@ -30,8 +30,13 @@
       customer_receipt_date = #{customerReceiptDate,jdbcType=DATE}
     where customer_receipt_id = #{customerReceiptId,jdbcType=INTEGER}
   </update>
+  <update id="updateCustomerReceiptEdit">
+    update customer_receipt set waybill_id=#{waybillId},customer_receipt_name=#{customerReceiptName},customer_receipt_record=#{customerReceiptRecord},customer_receipt_check=#{customerReceiptCheck}
+     ,customer_receipt_date=#{customerReceiptDate}where customer_receipt_id = #{customerReceiptId,jdbcType=INTEGER}
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select customer_receipt_id, waybill_id, customer_receipt_name, customer_receipt_record, 
+    select customer_receipt_id, waybill_id, customer_receipt_name, customer_receipt_record,
     customer_receipt_check, customer_receipt_date
     from customer_receipt
     where customer_receipt_id = #{customerReceiptId,jdbcType=INTEGER}
@@ -40,5 +45,28 @@
     select customer_receipt_id, waybill_id, customer_receipt_name, customer_receipt_record, 
     customer_receipt_check, customer_receipt_date
     from customer_receipt
+  </select>
+  <select id="CustomerReceiptSearch" resultMap="BaseResultMap">
+    select customer_receipt_id, waybill_id, customer_receipt_name, customer_receipt_record,
+    customer_receipt_check, customer_receipt_date
+    from customer_receipt
+    <where>
+      <if test="customerReceiptName!=null and customerReceiptName!=''">
+        customer_receipt_name like concat('%',#{customerReceiptName},'%')
+      </if>
+      <if test="waybillId!=null and waybillId!=''">
+        AND waybill_id =#{waybillId}
+      </if>
+      <if test="timeRange1!=null and timeRange2!=null ">
+        AND customer_receipt_date between #{timeRange1} and #{timeRange2}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectwaybillId" resultType="String">
+    select waybill_id from customer_receipt where waybill_id=#{waybillId}
+  </select>
+  <select id="selectwaybillIdNull" resultType="String">
+    select waybill_id from customer_receipt where waybill_id=#{waybillId} and  waybill_id is null
   </select>
 </mapper>

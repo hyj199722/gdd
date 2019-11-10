@@ -1,5 +1,7 @@
 package com.mju.band3.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Customer_Receipt {
@@ -12,7 +14,7 @@ public class Customer_Receipt {
     private String customerReceiptRecord;
 
     private String customerReceiptCheck;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date customerReceiptDate;
 
     public Integer getCustomerReceiptId() {

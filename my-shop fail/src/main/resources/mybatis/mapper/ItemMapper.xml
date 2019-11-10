@@ -7,6 +7,13 @@
         <result column="item_name" jdbcType="VARCHAR" property="itemName"/>
         <result column="item_num" jdbcType="INTEGER" property="itemNum"/>
         <result column="item_weight" jdbcType="DOUBLE" property="itemWeight"/>
+        <result column="item_wrap" jdbcType="INTEGER" property="itemWrap"/>
+        <result column="item_size" jdbcType="DOUBLE" property="itemSize"/>
+        <result column="item_value" jdbcType="DOUBLE" property="itemValue"/>
+        <result column="item_insurance" jdbcType="DOUBLE" property="itemInsurance"/>
+        <result column="item_ship" jdbcType="DOUBLE" property="itemShip"/>
+        <result column="item_pay" jdbcType="INTEGER" property="itemPay"/>
+        <result column="contract_id" jdbcType="VARCHAR" property="contractId"/>
     </resultMap>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from item
@@ -14,10 +21,11 @@
   </delete>
     <insert id="insert" parameterType="com.mju.band3.entity.Item">
     insert into item (item_id, waybill_id, item_name, 
-      item_num, item_weight,item_wrap,item_size,item_value,item_insurance,item_ship,item_pay)
+      item_num, item_weight,item_wrap,item_size,item_value,item_insurance,item_ship,item_pay,contract_id)
     values (#{itemId,jdbcType=INTEGER}, #{waybillId,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
       #{itemNum,jdbcType=INTEGER}, #{itemWeight,jdbcType=DOUBLE}, #{itemWrap,jdbcType=INTEGER},#{itemSize,jdbcType=DOUBLE},
-      #{itemValue,jdbcType=DOUBLE},#{itemInsurance,jdbcType=DOUBLE},#{itemShip,jdbcType=DOUBLE},#{itemPay,jdbcType=INTEGER})
+      #{itemValue,jdbcType=DOUBLE},#{itemInsurance,jdbcType=DOUBLE},#{itemShip,jdbcType=DOUBLE},#{itemPay,jdbcType=INTEGER},
+      #{contractId,jdbcType=VARCHAR})
   </insert>
     <update id="updateByPrimaryKey" parameterType="com.mju.band3.entity.Item">
     update item
@@ -30,13 +38,14 @@
       item_value =  #{itemValue,jdbcType=DOUBLE},
       item_insurance = #{itemInsurance,jdbcType=DOUBLE},
       item_ship = #{itemShip,jdbcType=DOUBLE},
-      item_pay = #{itemPay,jdbcType=INTEGER}
+      item_pay = #{itemPay,jdbcType=INTEGER},
+      contract_id = #{contractId,jdbcType=VARCHAR}
     where item_id = #{itemId,jdbcType=INTEGER} and waybill_id = #{waybillId,jdbcType=VARCHAR}
   </update>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
     select *
     from item
-    where item_id = #{itemId,jdbcType=INTEGER}
+    where item_id = #{itemId,jdbcType=INTEGER} and  waybill_id=#{waybillId,jdbcType=VARCHAR}
   </select>
     <select id="selectAll" resultMap="BaseResultMap">
     select *
@@ -46,5 +55,40 @@
     select *
     from item
     where waybill_id=#{waybillId,jdbcType=VARCHAR}
+  </select>
+    <delete id="deleteItemWaybill">
+    delete from item
+    where item_id = #{itemId,jdbcType=INTEGER} and waybill_id=#{waybillId,jdbcType=VARCHAR}
+  </delete>
+    <select id="getItemsByContractId" resultMap="BaseResultMap">
+    select *
+    from item
+    where contract_id=#{contractId,jdbcType=VARCHAR}
+  </select>
+    <select id="getItemByWaybillIdWithoutContractId" resultMap="BaseResultMap">
+    select *
+    from item
+    where waybill_id=#{waybillId,jdbcType=VARCHAR} and contract_id is null
+  </select>
+    <update id="upload" parameterType="com.mju.band3.entity.Item">
+    update item
+    set
+      contract_id = #{contractId,jdbcType=VARCHAR}
+    where item_id = #{itemId,jdbcType=INTEGER} and waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </update>
+    <update id="unload" parameterType="com.mju.band3.entity.Item">
+    update item
+    set
+      contract_id = 'unload'
+    where item_id = #{itemId,jdbcType=INTEGER} and waybill_id = #{waybillId,jdbcType=VARCHAR}
+  </update>
+    <delete id="deleteByWaybillId" parameterType="java.lang.String">
+    delete from item
+    where waybill_id = #{waybill_id,jdbcType=VARCHAR}
+  </delete>
+    <select id="unloadItems" resultMap="BaseResultMap">
+    select *
+    from item
+    where waybill_id=#{waybillId,jdbcType=VARCHAR} and contract_id !='unload'
   </select>
 </mapper>

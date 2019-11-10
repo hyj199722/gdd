@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.band3.dao.DriverMapper">
+  <resultMap id="BaseResultMap" type="com.mju.band3.entity.Driver">
+    <id column="driver_id" jdbcType="INTEGER" property="driverId" />
+      <result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+    <result column="driver_license" jdbcType="VARCHAR" property="driverLicense" />
+    <result column="driving_license" jdbcType="VARCHAR" property="drivingLicense" />
+    <result column="driver_carnum" jdbcType="VARCHAR" property="driverCarnum" />
+
+  </resultMap>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select *
+    from driver
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select *
+    from driver
+  </select>
+</mapper>

@@ -16,4 +16,6 @@ public interface WaybillService {
     List<Waybill> waybillSearch(Map<String,Object> map);
     void deleteWaybill(String waybillId);
     void changeStatus(String waybillId,Integer status);
+    List<Waybill> selectByLocation(Map<String,String> map);
+    void update(Waybill waybill);
 }

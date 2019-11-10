@@ -92,7 +92,7 @@
   <select id="latestRecord" resultMap="BaseResultMap">
     select bill_id, waybill_id, bill_status, write_date
     from bill_status
-    where waybill_id like "c%" and bill_status=0
+    where bill_status=0
     order by waybill_id
   </select>
 

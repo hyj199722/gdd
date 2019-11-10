@@ -49,7 +49,7 @@
                         <div class="box-header">
 
 
-                            <form class="form-horizontal" id="bill_max_form" action="/item_alter" method="post">
+                            <form class="form-horizontal" id="item_form" action="/item_alter" method="post">
                                 <div class="box-body col-sm-12 page">
 
                                     <div class="form-group">
@@ -104,8 +104,8 @@
 
                                     <div class="row" style="padding-left: 50px; padding-top: 10px">
                                         <button  type="post" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</button>&nbsp&nbsp&nbsp
-                                        <button id="bill_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</button>&nbsp&nbsp&nbsp
-                                        <button type="button" class="btn bnt-sm btn-default" onclick="window.location.href=document.referrer"><i class="fa fa-plus"></i>返回</button>&nbsp&nbsp&nbsp
+                                        <button id="item_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</button>&nbsp&nbsp&nbsp
+                                        <a href="/waybill_select" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
                                     </div>
                                 </div>
                             </form>
@@ -127,10 +127,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${items}" var="item">
+                                <c:forEach items="${pageInfo.list}" var="item">
                                     <tr>
                                         <td>${item.itemName}</td>
-                                        <td> <a href="/item_edit?itemId=${item.itemId}" >${item.itemId}</a></td>
+                                        <td> <a href="/item_edit?itemId=${item.itemId}&waybillId=${item.waybillId}" >${item.itemId}</a></td>
                                         <td><c:if test="${item.itemWrap ==1}" >纸箱</c:if>
                                             <c:if test="${item.itemWrap ==2}" >袋装</c:if>
                                             <c:if test="${item.itemWrap ==3}" >桶装</c:if>
@@ -147,7 +147,7 @@
 
                             </table>
                         </div>
-
+                        <%--分页文字信息--%>
                         <div class="row" >
                             <%--分页文字信息--%>
                             <div class="col-md-6">
@@ -157,11 +157,11 @@
                             <div class="col-md-6" style="padding-left: 150px">
                                 <nav aria-label="Page navigation">
                                     <ul class="pagination">
-                                        <li><a href="/bill_list?pn=1">首页</a> </li>
+                                        <li><a href="/item_edit?pn=1&waybillId=${item.waybillId}&itemId=${item.itemId}">首页</a> </li>
                                         <%--如果有上一页，则可以通过减一操作移动，且有<符号&laquo，否则连点<的符号也没有，也就不能移动上一页--%>
                                         <c:if test="${pageInfo.hasPreviousPage}">
                                             <li>
-                                                <a href="/bill_list?pn=${pageInfo.pageNum-1}" aria-label="Previous">
+                                                <a href="/item_edit?pn=${pageInfo.pageNum-1}&waybillId=${item.waybillId}&itemId=${item.itemId}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                 </a>
                                             </li>
@@ -174,21 +174,23 @@
                                                 <li class="active"><a href="#">${page_Num}</a></li>
                                             </c:if>
                                             <c:if test="${page_Num!=pageInfo.pageNum}">
-                                                <li><a href="/bill_list?pn=${page_Num}">${page_Num}</a></li>
+                                                <li><a href="/item_edit?pn=${page_Num}&waybillId=${item.waybillId}&itemId=${item.itemId}">${page_Num}</a></li>
                                             </c:if>
 
                                         </c:forEach>
                                         <c:if test="${pageInfo.hasNextPage}">
                                             <li>
-                                                <a href="/bill_list?pn=${pageInfo.pageNum+1}" aria-label="Next">
+                                                <a href="/item_edit?pn=${pageInfo.pageNum+1}&waybillId=${item.waybillId}&itemId=${item.itemId}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                 </a>
                                             </li>
                                         </c:if>
 
-                                        <li><a href="/bill_list?pn=${pageInfo.pages}">末页</a> </li>
-                                        <form style="float: left" action="/bill_list">
+                                        <li><a href="/item_edit?pn=${pageInfo.pages}&waybillId=${item.waybillId}&itemId=${item.itemId}">末页</a> </li>
+                                        <form style="float: left" action="/item_edit">
                                             <input type="text" name="pn" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="waybillId" value="${item.waybillId}" style="height:33px;width: 50px">
+                                            <input hidden type="text" name="itemId" value="${item.itemId}" style="height:33px;width: 50px">
                                             <input type="submit" value="跳转" class="btn btn-primary">
                                         </form>
 
@@ -196,6 +198,7 @@
                                     </ul>
                                 </nav>
                             </div>
+
 
                         </div>
                         <!-- /.box-body -->
@@ -221,14 +224,13 @@
 <sys:modal />
 <script>
 
-    $("#bill_delete").bind("click",function () {
+    $("#item_delete").bind("click",function () {
         $("#modal-message").html("确认删除当前物品？");
         $("#modal-default").modal("show");
         $("#btnModalOk").bind("click", function () {
             $("#modal-default").modal("hide");
-            $("#bill_max_form").attr("action","/bill_delete?billId="+${bill.billId})
-            $("#bill_max_form").submit();
-
+            $("#item_form").attr("action","/item_delete")
+            $("#item_form").submit();
         });
     });
 

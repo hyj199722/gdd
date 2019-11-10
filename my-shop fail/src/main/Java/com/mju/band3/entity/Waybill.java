@@ -226,4 +226,32 @@ public class Waybill {
     public void setWaybillStatus(Integer waybillStatus) {
         this.waybillStatus = waybillStatus;
     }
+
+    @Override
+    public String toString() {
+        return "Waybill{" +
+                "waybillId='" + waybillId + '\'' +
+                ", waybillDate=" + waybillDate +
+                ", waybillStatus=" + waybillStatus +
+                ", waybillBegin='" + waybillBegin + '\'' +
+                ", waybillEnd='" + waybillEnd + '\'' +
+                ", waybillRecive='" + waybillRecive + '\'' +
+                ", waybillReciveAddress='" + waybillReciveAddress + '\'' +
+                ", waybillRecivePhone='" + waybillRecivePhone + '\'' +
+                ", waybillSend='" + waybillSend + '\'' +
+                ", waybillSendAddress='" + waybillSendAddress + '\'' +
+                ", waybillSendPhone='" + waybillSendPhone + '\'' +
+                ", waybillFreight=" + waybillFreight +
+                ", waybillInsurance=" + waybillInsurance +
+                ", waybillPayType=" + waybillPayType +
+                ", waybillReciveType=" + waybillReciveType +
+                ", waybillLoan=" + waybillLoan +
+                ", waybillCommission=" + waybillCommission +
+                ", waybillSalesman='" + waybillSalesman + '\'' +
+                ", waybillRebate=" + waybillRebate +
+                ", waybillFill='" + waybillFill + '\'' +
+                ", waybillFillDate=" + waybillFillDate +
+                ", waybillRemarks='" + waybillRemarks + '\'' +
+                '}';
+    }
 }
