@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="sys" tagdir="/WEB-INF/tags/sys" %>
 
 <!DOCTYPE html>
 <html>
@@ -46,16 +46,18 @@
 
 
                     <div class="box">
-                        <form class="form-horizontal" action="/itemdrive_select" method="get">
-                            <div class="row" style="padding-left: 20px; padding-top: 10px">
+                        <form class="form-horizontal" action="/itemdrive_select" method="get" id="ship_form">
+                            <c:if test="${status==1}"><div class="row" style="padding-left: 20px; padding-top: 10px">
                                 <button type="submit" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>卸货</button>&nbsp&nbsp&nbsp
+                                <button id="item_ship" type="button" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>发车</button>&nbsp&nbsp&nbsp
                             </div>
+                            </c:if>
                             <!-- /.box-header -->
                             <div class="box-body table-responsive no-padding">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th><input type="checkbox" class="minimal icheck_master"></th>
+                                        <c:if test="${status==1}"><th><input type="checkbox" class="minimal icheck_master"></th></c:if>
                                         <th>货物单编号</th>
                                         <th>品名</th>
                                         <th>货号</th>
@@ -67,7 +69,7 @@
                                     <tbody>
                                     <c:forEach items="${items}" var="item">
                                         <tr>
-                                            <td><input name="unload" type="checkbox" class="minimal" value="${item.itemId};${item.waybillId}"></td>
+                                            <c:if test="${status==1}"> <td><input name="unload" type="checkbox" class="minimal" value="${item.itemId};${item.waybillId}"></td></c:if>
                                             <td>${item.waybillId}</td>
                                             <td>${item.itemName}</td>
                                             <td>${item.itemId}</td>
@@ -86,7 +88,7 @@
                                 <input type="hidden" name="contractId" value="${contractId}">
                             </div>
                         </form>
-                        <form class="form-horizontal" action="/itemdrive_select" method="get">
+                        <c:if test="${status==1}"><form class="form-horizontal" action="/itemdrive_select" method="get">
                             <div class="box-body col-sm-12 page">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">起点站：</label>
@@ -100,8 +102,9 @@
                         </form>
                         <form class="form-horizontal" action="/itemdrive_select" method="get">
                             <div class="row" style="padding-left: 20px; padding-top: 10px">
-                                <button type="submit" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>装货</button>&nbsp&nbsp&nbsp
-                            </div>
+                                <button type="submit" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>装货</button>&nbsp&nbsp&nbsp</c:if>
+                                <a href="/contract_edit?contractId=${contractId}" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
+                                <c:if test="${status==1}"></div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
@@ -195,6 +198,7 @@
 
                         </div>
                         <!-- /.box-body -->
+                        </c:if>
 
                     </div>
                 </div>
@@ -217,13 +221,13 @@
 <sys:modal />
 <script>
 
-    $("#item_delete").bind("click",function () {
-        $("#modal-message").html("确认删除当前物品？");
+    $("#item_ship").bind("click",function () {
+        $("#modal-message").html("发车后将不能再装货，您确定要发车吗？");
         $("#modal-default").modal("show");
         $("#btnModalOk").bind("click", function () {
             $("#modal-default").modal("hide");
-            $("#item_form").attr("action","/item_delete")
-            $("#item_form").submit();
+            $("#ship_form").attr("action","/item_ship")
+            $("#ship_form").submit();
 
         });
     });

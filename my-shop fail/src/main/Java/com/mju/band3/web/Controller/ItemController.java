@@ -56,15 +56,6 @@ public class ItemController {
 
     }
 
-    @RequestMapping(value = "/item_add_done", method = RequestMethod.GET)
-    public String item_add_done(Model model, String waybillId) {
-        List<Item> items = itemService.getItemByWaybillId(waybillId);
-        model.addAttribute("waybillId", waybillId);
-        model.addAttribute("items", items);
-        return "item_add";
-
-    }
-
     @RequestMapping(value = "/item_edit", method = RequestMethod.GET)
     public String item_edit(@RequestParam(value = "itemId") Integer itemId, @RequestParam(value = "waybillId") String waybillId, Model model,
                             @RequestParam(value = "pn", required = false, defaultValue = "1") Integer pn,
@@ -86,38 +77,31 @@ public class ItemController {
 
     @RequestMapping(value = "/item_save", method = RequestMethod.POST)
     public String item_save(Item item, RedirectAttributes redirectAttributes, Model model) {
-        System.out.println("itemsave" + item.getWaybillId());
-        redirectAttributes.addFlashAttribute("waybillId", item.getWaybillId());
         model.addAttribute("waybillId", item.getWaybillId());
-        PageHelper.startPage(1, 10);
-        List<Item> items = itemService.getItemByWaybillId(item.getWaybillId());
-        PageInfo pageInfo = new PageInfo(items, 5);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("waybillId", item.getWaybillId());
-        model.addAttribute("items", items);
         if (StringUtils.isEmpty(item.getWaybillId())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货运单编号"));
-            return "item_add";
+            return "redirect:item_add?waybillId="+item.getWaybillId();
         }
         if (StringUtils.isEmpty(item.getItemName())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货运货物名称"));
-            return "item_add";
+            return "redirect:item_add?waybillId="+item.getWaybillId();
         }
         if (StringUtils.isEmpty(item.getItemId())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货物编号"));
-            return "item_add";
+            return "redirect:item_add?waybillId="+item.getWaybillId();
         } else {
             if (itemService.getItem(item.getItemId(), item.getWaybillId()) != null) {
                 redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("货物编号已存在"));
-                return "item_add";
+                return "redirect:item_add?waybillId="+item.getWaybillId();
             }
         }
         if (StringUtils.isEmpty(item.getItemNum())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写货物件数量"));
-            return "item_add";
+            return "redirect:item_add?waybillId="+item.getWaybillId();
         }
         itemService.insertItem(item);
-        return "item_add";
+        model.addAttribute("status",waybillService.getWaybill(item.getWaybillId()).getWaybillStatus());
+        return "redirect:item_add?waybillId="+item.getWaybillId();
 
     }
 
@@ -129,14 +113,9 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/item_alter", method = RequestMethod.POST)
-    public String item_alter(Item item, Model model, RedirectAttributes redirectAttributes) {
+    public String item_alter(Item item) {
         itemService.updateItem(item);
-        PageHelper.startPage(1, 10);
-        List<Item> items = itemService.getItemByWaybillId(item.getWaybillId());
-        PageInfo pageInfo = new PageInfo(items, 5);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("waybillId", item.getWaybillId());
-        return "item_add";
+        return "redirect:item_add?waybillId="+item.getWaybillId();
 
     }
 
@@ -161,21 +140,15 @@ public class ItemController {
             for (String s : split) {
                 contractService.upload(s, contractId);
             }
-            for (String s : split) {
-                String[] split2 = s.split(";");
-                String waybillId = split2[1];
-                contractService.uploadStatus(waybillId);
-            }
-            contractService.changeStatus(contractId, 2);
         }
         if (!StringUtils.isEmpty(unload)) {
             String[] split = unload.split(",");
             for (String s : split) {
                 contractService.unload(s);
             }
-            contractService.changeStatus(contractId, 3);
         }
         model.addAttribute("contractId", contractId);
+        model.addAttribute("status",contractService.getContract(contractId).getContractStatus());
         model.addAttribute("waybillBegin", waybillBegin);
         model.addAttribute("waybillEnd", waybillEnd);
         List<Item> contractItems = itemService.selectByContractId(contractId);
@@ -242,5 +215,14 @@ public class ItemController {
         model.addAttribute("waybillId", item.getWaybillId());
         model.addAttribute("items", items);
         return "item_add";
+    }
+    @RequestMapping(value = "/item_ship", method = RequestMethod.GET)
+    public String item_ship(Model model,String contractId) {
+        contractService.changeStatus(contractId,2);
+        List<Item> items=itemService.selectByContractId(contractId);
+        for (Item item:items) {
+            contractService.uploadStatus(item.getWaybillId());
+        }
+        return "redirect:contract_select";
     }
 }

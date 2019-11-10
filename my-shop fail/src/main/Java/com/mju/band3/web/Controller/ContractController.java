@@ -44,8 +44,8 @@ public class ContractController {
     //运输合同
     @RequestMapping(value = "/contract_add",method = RequestMethod.GET)
     public String contract_add(Model model){
-        System.out.println("到了这里了3！");
-        model.addAttribute("contractId",contractService.latestRecord());
+        String newId=contractService.latestRecord();
+        model.addAttribute("contractId",newId);
         model.addAttribute("drivers",contractService.getDrivers());
         return "contract_add";
 
@@ -60,7 +60,6 @@ public class ContractController {
     }
     @RequestMapping(value = "/contract_save",method = RequestMethod.POST)
     public String contract_save(Contract contract,RedirectAttributes redirectAttributes,HttpServletRequest request,Model model){
-        System.out.println("到了这里了！");
         redirectAttributes.addFlashAttribute("contract", contract);
         if (StringUtils.isEmpty(contract.getContractId())) {
             redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("请填写运输单编号"));

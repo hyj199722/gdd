@@ -299,9 +299,7 @@
                                         </button>
                                         &nbsp&nbsp&nbsp
                                     </c:if>
-                                    <button type="button" class="btn bnt-sm btn-default"
-                                            onclick="window.location.href=document.referrer"><i class="fa fa-undo"></i>返回
-                                    </button>
+                                    <a href="/contract_select" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp
                                 </div>
                             </div>

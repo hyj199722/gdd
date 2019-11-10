@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"> 备注：</label>
-                                    <textarea style="height:72px;width:680px" maxlength="255" name="waybillRemarks" placeholder="请输入备注"> <c:if test="${waybill.waybillRemarks!=null}"> "${waybill.waybillRemarks}" </c:if></textarea>
+                                    <textarea style="height:72px;width:680px" maxlength="255" name="waybillRemarks" placeholder="请输入备注"> <c:if test="${waybill.waybillRemarks!=null}"> ${waybill.waybillRemarks} </c:if></textarea>
                                 </div>
                                 <div class="box-footer">
                                     <a href="/waybill_select" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp

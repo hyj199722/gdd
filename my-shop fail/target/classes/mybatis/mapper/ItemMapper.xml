@@ -79,7 +79,7 @@
     <update id="unload" parameterType="com.mju.band3.entity.Item">
     update item
     set
-      contract_id = 'unload'
+      contract_id = null
     where item_id = #{itemId,jdbcType=INTEGER} and waybill_id = #{waybillId,jdbcType=VARCHAR}
   </update>
     <delete id="deleteByWaybillId" parameterType="java.lang.String">

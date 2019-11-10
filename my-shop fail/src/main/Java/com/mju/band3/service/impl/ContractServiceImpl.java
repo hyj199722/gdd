@@ -90,9 +90,6 @@ public class ContractServiceImpl implements ContractService {
         String waybillId = split[1];
         Integer itemIdI = Integer.valueOf(itemId);
         itemMapper.unload(itemIdI, waybillId);
-        if (itemMapper.getItemByWaybillIdWithoutContractId(waybillId).isEmpty()&&itemMapper.unloadItems(waybillId).isEmpty()) {
-            waybillMapper.changeStatus(waybillId,3);
-        }
     }
 
     @Override

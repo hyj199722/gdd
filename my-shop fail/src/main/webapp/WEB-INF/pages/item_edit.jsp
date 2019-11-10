@@ -105,7 +105,7 @@
                                     <div class="row" style="padding-left: 50px; padding-top: 10px">
                                         <button  type="post" class="btn bnt-sm btn-default"><i class="fa fa-plus"></i>修改</button>&nbsp&nbsp&nbsp
                                         <button id="item_delete" type="button" class="btn bnt-sm btn-default"><i class="fa fa-trash-o"></i>删除</button>&nbsp&nbsp&nbsp
-                                        <a href="/waybill_select" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
+                                        <a href="/item_add?waybillId=${item.waybillId}" type="button" class="btn bnt-sm btn-default" ><i class="fa fa-undo"></i>返回</a>&nbsp&nbsp&nbsp
                                     </div>
                                 </div>
                             </form>
