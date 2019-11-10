@@ -101,6 +101,7 @@ public class ItemController {
         }
         itemService.insertItem(item);
         model.addAttribute("status",waybillService.getWaybill(item.getWaybillId()).getWaybillStatus());
+        redirectAttributes.addFlashAttribute("baseResult", BaseResult.success("添加货物成功！"));
         return "redirect:item_add?waybillId="+item.getWaybillId();
 
     }
@@ -113,8 +114,9 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/item_alter", method = RequestMethod.POST)
-    public String item_alter(Item item) {
+    public String item_alter(Item item,RedirectAttributes redirectAttributes) {
         itemService.updateItem(item);
+        redirectAttributes.addFlashAttribute("baseResult", BaseResult.success("修改货物成功！"));
         return "redirect:item_add?waybillId="+item.getWaybillId();
 
     }
@@ -217,12 +219,18 @@ public class ItemController {
         return "item_add";
     }
     @RequestMapping(value = "/item_ship", method = RequestMethod.GET)
-    public String item_ship(Model model,String contractId) {
-        contractService.changeStatus(contractId,2);
+    public String item_ship(Model model,String contractId,RedirectAttributes redirectAttributes) {
+
         List<Item> items=itemService.selectByContractId(contractId);
+        if(items.isEmpty()){
+            redirectAttributes.addFlashAttribute("baseResult", BaseResult.fail("空车无法发货！"));
+            return "redirect:itemdrive_select?contractId="+contractId;
+        }
+        contractService.changeStatus(contractId,2);
         for (Item item:items) {
             contractService.uploadStatus(item.getWaybillId());
         }
+        redirectAttributes.addFlashAttribute("baseResult", BaseResult.success("发货成功！"));
         return "redirect:contract_select";
     }
 }

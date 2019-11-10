@@ -323,8 +323,10 @@ public class WaybillController {
         waybill.setWaybillStatus(1);
         if (waybillService.getWaybill(waybill.getWaybillId()) == null) {
             waybillService.insert(waybill);
+            redirectAttributes.addFlashAttribute("baseResult", BaseResult.success("添加货运单成功！"));
         }else{
             waybillService.update(waybill);
+            redirectAttributes.addFlashAttribute("baseResult", BaseResult.success("修改货运单成功！"));
         }
         request.setAttribute("waybillEditId", waybill.getWaybillId());
         if (waybillService.getWaybill(waybill.getWaybillId()) == null) {

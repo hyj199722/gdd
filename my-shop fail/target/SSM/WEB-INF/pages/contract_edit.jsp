@@ -45,7 +45,7 @@
 
                     <div class="box box-info box-size">
                         <div class="box-header with-border">
-                            <h3 class="box-title">编辑运输合同</h3>
+                            <h3 class="box-title">编辑运输合同 <small><c:if test="${contract.contractStatus!=1}">运输合同已发车，无法编辑</c:if></small></h3>
                         </div>
 
 
