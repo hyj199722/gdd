@@ -393,9 +393,7 @@ public class WaybillController {
             map.put("waybillStatus",waybillStatus);
             map.put("timeRange1", timeRange1);
             map.put("timeRange2", timeRange2);
-            List<Waybill> waybills = waybillService.waybillSearch(map);
-            PageInfo pageInfo=new PageInfo(waybills,5);
-            model.addAttribute("pageInfo",pageInfo);
+
         Integer pageNum=null;
         if (request.getParameter("pageNum")!=null){
             pageNum = Integer.parseInt(request.getParameter("pageNum"));
@@ -408,6 +406,9 @@ public class WaybillController {
         model.addAttribute("waybillEnd", waybillEnd);
         model.addAttribute("waybillStatus",waybillStatus);
         model.addAttribute("timeRange", timeRange);
+        List<Waybill> waybills = waybillService.waybillSearch(map);
+        PageInfo pageInfo=new PageInfo(waybills,5);
+        model.addAttribute("pageInfo",pageInfo);
         return "waybill_select";
     }
 
